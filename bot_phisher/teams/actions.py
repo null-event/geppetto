@@ -16,7 +16,7 @@ def resolve_user_id(graph_token, email):
     url = f"https://graph.microsoft.com/v1.0/users/{email}"
     headers = {"Authorization": f"Bearer {graph_token}"}
     try:
-        resp = requests.get(url, headers=headers)
+        resp = requests.get(url, headers=headers, timeout=30)
         if resp.status_code == 200:
             return resp.json().get("id")
         log_info(
@@ -45,7 +45,7 @@ def create_conversation(bot_token, bot_app_id, user_id, tenant_id):
         "isGroup": False,
     }
     try:
-        resp = requests.post(url, headers=headers, json=body)
+        resp = requests.post(url, headers=headers, json=body, timeout=30)
         if resp.status_code in (200, 201):
             return resp.json().get("id")
         log_info(
@@ -69,7 +69,7 @@ def send_activity(bot_token, conversation_id, message):
     }
     body = {"type": "message", "text": message}
     try:
-        resp = requests.post(url, headers=headers, json=body)
+        resp = requests.post(url, headers=headers, json=body, timeout=30)
         if resp.status_code in (200, 201):
             activity_id = resp.json().get("id", "")
             return True, f"Delivered (activity: {activity_id})"

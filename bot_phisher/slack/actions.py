@@ -8,7 +8,9 @@ from bot_phisher.core.logger import log_info, log_result
 def lookup_user_by_email(client, email):
     """Resolve email to Slack user ID. Returns user_id or None."""
     try:
-        result = client.api_call(f"users.lookupByEmail?email={email}")
+        result = client.api_call(
+            "users.lookupByEmail", params={"email": email}
+        )
         return result["user"]["id"]
     except SlackApiError:
         return None

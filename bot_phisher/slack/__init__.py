@@ -27,7 +27,11 @@ def _get_targets(client):
         email = questionary.text("Enter target email:").ask()
         if not email:
             return []
-        return [(email, lookup_user_by_email(client, email))]
+        uid = lookup_user_by_email(client, email)
+        if not uid:
+            log_info(f"[red]  User not found: {email}[/red]")
+            return []
+        return [(email, uid)]
     emails = load_targets()
     targets = []
     for email in emails:

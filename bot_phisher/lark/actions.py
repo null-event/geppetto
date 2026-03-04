@@ -41,6 +41,7 @@ def get_chat_id(token, email):
             BASE_URL + "user/v4/email2id",
             headers=headers,
             json={"email": email},
+            timeout=30,
         )
         resp.raise_for_status()
         open_id = resp.json().get("data", {}).get("open_id")
@@ -52,6 +53,7 @@ def get_chat_id(token, email):
             BASE_URL + "chat/v4/p2p/id",
             params={"open_id": open_id},
             headers=headers,
+            timeout=30,
         )
         chat_id = resp.json().get("data", {}).get("chat_id")
         if not chat_id:
@@ -81,6 +83,7 @@ def send_card(token, chat_id, card_data):
             params={"receive_id_type": "chat_id"},
             headers=headers,
             data=json.dumps(body),
+            timeout=30,
         )
         resp.raise_for_status()
         message_id = resp.json().get("data", {}).get("message_id", "")
@@ -99,7 +102,8 @@ def edit_card(token, message_id, card_data):
     body = {"content": card_data}
     try:
         resp = requests.patch(
-            url, headers=headers, data=json.dumps(body)
+            url, headers=headers,
+            data=json.dumps(body), timeout=30,
         )
         resp.raise_for_status()
         return True, f"Edited message_id: {message_id}"

@@ -1,21 +1,41 @@
 """Load target email addresses from targets.txt."""
 
-import sys
 from pathlib import Path
 
 
-def load_targets(targets_path="targets.txt"):
-    """Load emails from file, one per line. Returns list of strings."""
-    path = Path(targets_path)
-    if not path.exists():
-        print(f"[!] Targets file '{targets_path}' not found.")
-        sys.exit(1)
+def load_targets(path: str = "targets.txt") -> list[str]:
+    """Load target email addresses from a text file.
 
-    with open(path) as f:
-        emails = [line.strip() for line in f if line.strip()]
+    Reads targets from file (one email per line). Skips blank lines and
+    lines starting with "#" (comments). Strips whitespace from each line.
 
-    if not emails:
-        print(f"[!] Targets file '{targets_path}' is empty.")
-        sys.exit(1)
+    Args:
+        path: Path to the targets file (default: "targets.txt")
 
-    return emails
+    Returns:
+        List of email addresses. Empty list if file does not exist.
+
+    Example:
+        >>> targets = load_targets("targets.txt")
+        >>> print(targets)
+        ["user1@example.com", "user2@example.com"]
+    """
+    target_path = Path(path)
+
+    # Return empty list if file does not exist
+    if not target_path.exists():
+        return []
+
+    targets = []
+    with open(target_path) as f:
+        for line in f:
+            # Strip whitespace
+            stripped = line.strip()
+
+            # Skip blank lines and comments
+            if not stripped or stripped.startswith("#"):
+                continue
+
+            targets.append(stripped)
+
+    return targets

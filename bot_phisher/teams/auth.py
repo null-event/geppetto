@@ -27,7 +27,9 @@ def _request_token(client_id, client_secret, scope):
     }
     headers = {"Content-Type": "application/x-www-form-urlencoded"}
     try:
-        return requests.post(TOKEN_URL, data=payload, headers=headers)
+        return requests.post(
+            TOKEN_URL, data=payload, headers=headers, timeout=30,
+        )
     except requests.RequestException as e:
         log_info(f"[red]Connection error: {e}[/red]")
         return None
@@ -74,7 +76,8 @@ def decode_jwt_payload(token):
             payload_b64 += "=" * (4 - padding)
         decoded = base64.b64decode(payload_b64).decode("utf-8")
         return json.loads(decoded)
-    except Exception:
+    except (ValueError, json.JSONDecodeError, UnicodeDecodeError) as e:
+        log_info(f"[red]JWT decode failed: {e}[/red]")
         return None
 
 

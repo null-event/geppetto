@@ -18,7 +18,8 @@ def get_tenant_token(app_id, app_secret):
 
     try:
         resp = requests.post(
-            url, data=json.dumps(body).encode(), headers=headers
+            url, data=json.dumps(body).encode(),
+            headers=headers, timeout=30,
         )
         if resp.status_code == 200:
             token = resp.json().get("tenant_access_token", "")
