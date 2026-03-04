@@ -1,0 +1,13 @@
+slack:
+  - name: "Example Slack Bot"
+    token: "xoxb-your-token-here"
+
+lark:
+  - name: "Example Lark Bot"
+    app_id: "cli_your_app_id"
+    app_secret: "your_app_secret"
+
+teams:
+  - name: "Example Teams Bot"
+    client_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    client_secret: "your-client-secret"

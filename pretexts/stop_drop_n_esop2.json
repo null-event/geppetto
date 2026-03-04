@@ -1,0 +1,32 @@
+{
+    "schema": "2.0",
+    "config": {
+        "update_multi": true,
+        "style": {
+            "text_size": {
+                "normal_v2": {
+                    "default": "normal",
+                    "pc": "normal",
+                    "mobile": "heading"
+                }
+            }
+        }
+    },
+    "body": {
+        "direction": "vertical",
+        "horizontal_spacing": "8px",
+        "vertical_spacing": "0px",
+        "horizontal_align": "left",
+        "vertical_align": "top",
+        "padding": "0px 0px 0px 0px",
+        "elements": [
+            {
+                "tag": "markdown",
+                "content": "**[IMPORTANT] Review RSU Award Agreements**\n\nYou have received and signed RSU award agreements from Bytedance Ltd.\n\nPlease review all signed agreements before 23:59 on [2025-05-30](UTC+08:00). Please log into Feishu ESOP in accordance with the instructions below.\n \nYou may wish to consider certain financial and other information about Bytedance Ltd., which is available on [iDeals Virtual Data Room](https://auth.idealsvdr.com/login?ReturnUrl=https:%2F%2Fauth.idealsvdr.com%2Fconnect%2Fauthorize%2Fcallback%3Fresponse_type%3Dcode%26client_id%3Dvdr3%26state%3Dy6kFxO7UId897XirU6dce2DP8K7bkDA2ZL7OSPlIXZg;https%253A%252F%252Fwww3.idealsvdr.com%252Fv3%252FUS_disclosure%252F%253FReturnUrl%253Dhttps%25253a%25252f%25252fwww3.idealsvdr.com%25252fv3%25252fUS_disclosure%25252f%252523%25252fsettings%25252fagreement%26redirect_uri%3Dhttps%253A%252F%252Fwww3.idealsvdr.com%252Fv3%252FSso2RedirectUri%26scope%3Dopenid%2520profile%2520api%2520offline_access%26code_challenge%3D_AYy6twxS5aoeo7t-OgVJzKD4K0nz7rKdju8Nd7qfbQ%26code_challenge_method%3DS256%26room%3Dwww3.idealsvdr.com_US_disclosure%26room_name%3DUS_disclosure).\n\nLogin: [https://esop.bytedance.com](https://google.com). If this is your first time to log in, please click \"Log in with Lark.\"",
+                "text_align": "left",
+                "text_size": "normal_v2",
+                "margin": "0px 0px 0px 0px"
+            }
+        ]
+    }
+}

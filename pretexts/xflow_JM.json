@@ -1,0 +1,89 @@
+{
+    "config": {},
+    "i18n_elements": {
+        "zh_cn": [],
+        "en_us": [
+            {
+                "tag": "markdown",
+                "content": "**Job ID:** 332950\n\n**Process:** Orthrus Temporary Permission\n**Current Node:** Node Owner Review\n**Applicant:** erin.liman (Erin Liman)",
+                "text_align": "left",
+                "text_size": "normal"
+            },
+            {
+                "tag": "hr"
+            },
+            {
+                "tag": "markdown",
+                "content": "**permission:** root\n**hosts:** ['10.118.59.96']\n**node_id:** [|Data-系统部|Infrastructure Engineering|流量服务|源站缓存|data.system.kfc_overseas_imgservice|data.system.kfc_overseas_imgcache]\n**reviewer:** ['amar.nyam', 'fuhaotong', 'james.mckenna']\n**duration:** 24\n**desc:** root on broken host\n**applicant_department:** US Tech and Product-Revenue and Infrastructure Eng-TikTok Eng SRE",
+                "text_align": "left",
+                "text_size": "normal"
+            },
+            {
+                "tag": "hr"
+            },
+            {
+                "tag": "action",
+                "actions": [
+                    {
+                        "tag": "button",
+                        "text": {
+                            "tag": "plain_text",
+                            "content": "Go to Review"
+                        },
+                        "type": "default",
+                        "complex_interaction": true,
+                        "width": "default",
+                        "size": "medium",
+                        "multi_url": {
+                            "url": "",
+                            "pc_url": "https://applink.larksuite.com/client/web_url/open?mode=window&url=https%3a%2f%2fwww.larksuite.com%2f",
+                            "ios_url": "",
+                            "android_url": ""
+                        }
+                    }
+                ]
+            },
+            {
+                "tag": "hr"
+            },
+            {
+                "tag": "column_set",
+                "flex_mode": "none",
+                "horizontal_spacing": "default",
+                "background_style": "default",
+                "columns": [
+                    {
+                        "tag": "column",
+                        "elements": [
+                            {
+                                "tag": "div",
+                                "text": {
+                                    "tag": "plain_text",
+                                    "content": "Created At: 2024-06-18 09:58:51",
+                                    "text_size": "notation",
+                                    "text_align": "left",
+                                    "text_color": "grey"
+                                }
+                            }
+                        ],
+                        "width": "weighted",
+                        "weight": 1
+                    }
+                ]
+            }
+        ]
+    },
+    "i18n_header": {
+        "en_us": {
+            "title": {
+                "tag": "plain_text",
+                "content": "Bytebox-Review Request"
+            },
+            "subtitle": {
+                "tag": "plain_text",
+                "content": ""
+            },
+            "template": "blue"
+        }
+    }
+}

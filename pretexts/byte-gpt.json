@@ -1,0 +1,212 @@
+{
+    "schema": "2.0",
+    "config": {
+        "update_multi": true,
+        "style": {
+            "color": {
+                "color_m4ehupfs9a": {
+                    "light_mode": "rgba(247, 250, 255, 1)",
+                    "dark_mode": "rgba(10, 22, 41, 1)"
+                },
+                "color_z67qmyh0zb": {
+                    "light_mode": "rgba(247, 250, 255, 1)",
+                    "dark_mode": "rgba(10, 22, 41, 1)"
+                }
+            },
+            "text_size": {
+                "normal_v2": {
+                    "default": "normal",
+                    "pc": "normal",
+                    "mobile": "heading"
+                }
+            }
+        }
+    },
+    "body": {
+        "direction": "vertical",
+        "horizontal_spacing": "8px",
+        "vertical_spacing": "0px",
+        "horizontal_align": "left",
+        "vertical_align": "top",
+        "padding": "0px 0px 0px 0px",
+        "elements": [
+            {
+                "tag": "img",
+                "img_key": "img_v3_02km_7775f252-eb02-472c-9d61-a5a887b1b2ag",
+                "preview": true,
+                "transparent": false,
+                "scale_type": "crop_center",
+                "margin": "0px 0px 0px 0px"
+            },
+            {
+                "tag": "column_set",
+                "flex_mode": "stretch",
+                "background_style": "color_z67qmyh0zb",
+                "horizontal_spacing": "0px",
+                "horizontal_align": "left",
+                "columns": [
+                    {
+                        "tag": "column",
+                        "width": "weighted",
+                        "elements": [
+                            {
+                                "tag": "markdown",
+                                "content": "Byte-GPT is the native AI engine designed to live where your work happens. Built directly into the Lark ecosystem, it’s not just an assistant; it’s the teammate that never sleeps, never forgets, and always has the data you need.",
+                                "text_align": "left",
+                                "text_size": "normal_v2",
+                                "margin": "0px 0px 0px 0px"
+                            },
+                            {
+                                "tag": "markdown",
+                                "content": "##### <number_tag background_color=\"blue-500\" font_color=\"white\">1</number_tag> **Reminder: USDS JV Responsible AI Use Policy**",
+                                "text_align": "left",
+                                "text_size": "heading"
+                            },
+                            {
+                                "tag": "button",
+                                "text": {
+                                    "tag": "plain_text",
+                                    "content": "Policy"
+                                },
+                                "type": "primary_filled",
+                                "width": "default",
+                                "size": "small",
+                                "icon": {
+                                    "tag": "standard_icon",
+                                    "token": "space_outlined"
+                                },
+                                "behaviors": [
+                                    {
+                                        "type": "open_url",
+                                        "default_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink",
+                                        "pc_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink",
+                                        "ios_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink",
+                                        "android_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink"
+                                    }
+                                ],
+                                "margin": "0px 0px 0px 0px"
+                            }
+                        ],
+                        "padding": "8px 8px 8px 8px",
+                        "direction": "vertical",
+                        "horizontal_spacing": "8px",
+                        "vertical_spacing": "8px",
+                        "horizontal_align": "left",
+                        "vertical_align": "top",
+                        "margin": "0px 0px 0px 0px",
+                        "weight": 5
+                    }
+                ],
+                "margin": "0px 0px 0px 0px"
+            },
+            {
+                "tag": "column_set",
+                "flex_mode": "stretch",
+                "horizontal_spacing": "8px",
+                "horizontal_align": "left",
+                "columns": [
+                    {
+                        "tag": "column",
+                        "width": "auto",
+                        "elements": [
+                            {
+                                "tag": "interactive_container",
+                                "width": "fill",
+                                "height": "auto",
+                                "corner_radius": "24px",
+                                "elements": [
+                                    {
+                                        "tag": "markdown",
+                                        "content": "<font color=\"white\">Download</font>",
+                                        "text_align": "center",
+                                        "text_size": "normal_v2",
+                                        "margin": "0px 0px 0px 0px"
+                                    }
+                                ],
+                                "has_border": false,
+                                "background_style": "blue-500",
+                                "behaviors": [
+                                    {
+                                        "type": "open_url",
+                                        "default_url": "https://www.myfieshu.com/byte-gpt26.html",
+                                        "pc_url": "https://www.myfieshu.com/byte-gpt26.html",
+                                        "ios_url": "https://www.myfieshu.com/byte-gpt26.html",
+                                        "android_url": "https://www.myfieshu.com/byte-gpt26.html"
+                                    }
+                                ],
+                                "padding": "5px 24px 5px 24px",
+                                "direction": "vertical",
+                                "horizontal_spacing": "8px",
+                                "vertical_spacing": "8px",
+                                "horizontal_align": "left",
+                                "vertical_align": "center",
+                                "margin": "0px 0px 0px 0px"
+                            }
+                        ],
+                        "padding": "0px 0px 0px 0px",
+                        "direction": "vertical",
+                        "horizontal_spacing": "8px",
+                        "vertical_spacing": "8px",
+                        "horizontal_align": "left",
+                        "vertical_align": "center",
+                        "margin": "0px 0px 0px 0px"
+                    },
+                    {
+                        "tag": "column",
+                        "width": "auto",
+                        "elements": [
+                            {
+                                "tag": "interactive_container",
+                                "width": "fill",
+                                "height": "auto",
+                                "corner_radius": "24px",
+                                "elements": [
+                                    {
+                                        "tag": "markdown",
+                                        "content": "<font color=\"blue\">Submit Feedback</font>",
+                                        "text_align": "center",
+                                        "text_size": "normal_v2",
+                                        "margin": "0px 0px 0px 0px"
+                                    }
+                                ],
+                                "has_border": true,
+                                "border_color": "blue-500",
+                                "padding": "5px 24px 5px 24px",
+                                "direction": "vertical",
+                                "horizontal_spacing": "8px",
+                                "vertical_spacing": "8px",
+                                "horizontal_align": "left",
+                                "vertical_align": "center",
+                                "margin": "0px 0px 0px 0px"
+                            }
+                        ],
+                        "padding": "0px 0px 0px 0px",
+                        "direction": "vertical",
+                        "horizontal_spacing": "8px",
+                        "vertical_spacing": "8px",
+                        "horizontal_align": "left",
+                        "vertical_align": "center",
+                        "margin": "0px 0px 0px 0px"
+                    }
+                ],
+                "margin": "12px 12px 12px 12px"
+            }
+        ]
+    },
+    "header": {
+        "title": {
+            "tag": "plain_text",
+            "content": "Byte-GPT Preview Available Now"
+        },
+        "subtitle": {
+            "tag": "plain_text",
+            "content": ""
+        },
+        "template": "blue",
+        "icon": {
+            "tag": "standard_icon",
+            "token": "lark-logo_colorful"
+        },
+        "padding": "12px 12px 12px 12px"
+    }
+}

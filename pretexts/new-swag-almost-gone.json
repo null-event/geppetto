@@ -1,0 +1,186 @@
+{
+    "config": {},
+    "i18n_elements": {
+        "zh_cn": [
+            {
+                "tag": "img",
+                "img_key": "img_v2_196bac64-1731-4bb1-b7c6-d8090482c3bg",
+                "preview": true,
+                "scale_type": "fit_horizontal",
+                "alt": {
+                    "tag": "plain_text",
+                    "content": ""
+                }
+            },
+            {
+                "tag": "repeat",
+                "variable": "object_list_1",
+                "elements": [
+                    {
+                        "tag": "column_set",
+                        "flex_mode": "none",
+                        "background_style": "default",
+                        "horizontal_spacing": "8px",
+                        "horizontal_align": "left",
+                        "columns": [
+                            {
+                                "tag": "column",
+                                "width": "weighted",
+                                "vertical_align": "top",
+                                "vertical_spacing": "8px",
+                                "background_style": "default",
+                                "elements": [
+                                    {
+                                        "tag": "img",
+                                        "img_key": "${object_list_1.avatar}",
+                                        "preview": true,
+                                        "scale_type": "crop_center",
+                                        "alt": {
+                                            "tag": "plain_text",
+                                            "content": ""
+                                        },
+                                        "corner_radius": "60px"
+                                    }
+                                ],
+                                "weight": 1
+                            },
+                            {
+                                "tag": "column",
+                                "width": "weighted",
+                                "vertical_align": "top",
+                                "vertical_spacing": "8px",
+                                "background_style": "default",
+                                "elements": [
+                                    {
+                                        "tag": "markdown",
+                                        "content": "${object_list_1.name}**｜${object_list_1.prize}**\n<font color='grey'>${object_list_1.description} </font>",
+                                        "text_align": "left"
+                                    },
+                                    {
+                                        "tag": "column_set",
+                                        "flex_mode": "none",
+                                        "background_style": "grey",
+                                        "horizontal_spacing": "8px",
+                                        "horizontal_align": "left",
+                                        "columns": [
+                                            {
+                                                "tag": "column",
+                                                "width": "weighted",
+                                                "vertical_align": "top",
+                                                "vertical_spacing": "8px",
+                                                "background_style": "default",
+                                                "elements": [
+                                                    {
+                                                        "tag": "markdown",
+                                                        "content": "**<font color='red'> ${object_list_1.performance}</font>**\n<font color='grey'> 本月业绩</font>",
+                                                        "text_align": "center"
+                                                    }
+                                                ],
+                                                "weight": 1
+                                            },
+                                            {
+                                                "tag": "column",
+                                                "width": "weighted",
+                                                "vertical_align": "top",
+                                                "vertical_spacing": "8px",
+                                                "background_style": "default",
+                                                "elements": [
+                                                    {
+                                                        "tag": "markdown",
+                                                        "content": "**<font color='${object_list_1.diff_month_color}'> ${object_list_1.diff_month_rate}</font>**\n<font color='grey'> 较上月份</font>",
+                                                        "text_align": "center"
+                                                    }
+                                                ],
+                                                "weight": 1
+                                            },
+                                            {
+                                                "tag": "column",
+                                                "width": "weighted",
+                                                "vertical_align": "top",
+                                                "vertical_spacing": "8px",
+                                                "background_style": "default",
+                                                "elements": [
+                                                    {
+                                                        "tag": "markdown",
+                                                        "content": "**<font color='${object_list_1.diff_season_color}'> ${object_list_1.diff_season_rate}</font>**\n<font color='grey'> 较上季度</font>",
+                                                        "text_align": "center"
+                                                    }
+                                                ],
+                                                "weight": 1
+                                            }
+                                        ]
+                                    }
+                                ],
+                                "weight": 4
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "en_us": [
+            {
+                "tag": "img",
+                "img_key": "img_v3_02d5_ac99382f-a20e-4b65-b01b-9067f5440f5g",
+                "preview": true,
+                "scale_type": "fit_horizontal",
+                "alt": {
+                    "tag": "plain_text",
+                    "content": ""
+                }
+            },
+            {
+                "tag": "markdown",
+                "content": "Hi All,\n\nSupplies are running low on exciting new premium swag options we recently introduced from The North Face, Nike, YETI, Carhartt, and Timbuk2.\n\nMany of these products are now very limited in supply so we encourage you all to move quickly on these!\n\nP.S. As always, if there are any products you'd like to see us add to ByteMall in the future, feel free to leave us a comment 🥳",
+                "text_align": "left",
+                "text_size": "normal"
+            },
+            {
+                "tag": "action",
+                "actions": [
+                    {
+                        "tag": "button",
+                        "text": {
+                            "tag": "plain_text",
+                            "content": "🛒 Shop now"
+                        },
+                        "type": "primary",
+                        "complex_interaction": true,
+                        "width": "default",
+                        "size": "large",
+                        "multi_url": {
+                            "url": "https://google.com",
+                            "pc_url": "https://google.com",
+                            "ios_url": "https://google.com",
+                            "android_url": "https://google.com"
+                        }
+                    }
+                ]
+            }
+        ]
+    },
+    "i18n_header": {
+        "zh_cn": {
+            "title": {
+                "tag": "plain_text",
+                "content": "2024 年 05 月销售部门业绩排行榜来啦 🎉🎉🎉"
+            },
+            "subtitle": {
+                "tag": "plain_text",
+                "content": ""
+            },
+            "template": "red"
+        },
+        "en_us": {
+            "title": {
+                "tag": "plain_text",
+                "content": "📢 New Swag - Limited Supplies Almost Gone!"
+            },
+            "subtitle": {
+                "tag": "plain_text",
+                "content": ""
+            },
+            "template": "red"
+        }
+    }
+}

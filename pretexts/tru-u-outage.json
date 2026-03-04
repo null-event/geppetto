@@ -1,0 +1,134 @@
+{
+    "config": {
+        "update_multi": true
+    },
+    "i18n_elements": {
+        "zh_cn": [
+            {
+                "tag": "img",
+                "img_key": "img_v3_0289_385e1af4-4d62-45bd-b9c4-50adf000f06g",
+                "preview": false,
+                "transparent": false,
+                "scale_type": "crop_center",
+                "size": "stretch_without_padding",
+                "alt": {
+                    "tag": "plain_text",
+                    "content": ""
+                }
+            },
+            {
+                "tag": "markdown",
+                "content": ":GeneralSun: 为了给同学更加多元便捷的快递取件服务，小邮局智能快递柜上线啦！让收包裹的喜悦快马加鞭来到你身边~",
+                "text_align": "left",
+                "text_size": "normal"
+            },
+            {
+                "tag": "column_set",
+                "flex_mode": "stretch",
+                "background_style": "default",
+                "horizontal_spacing": "8px",
+                "horizontal_align": "left",
+                "columns": [
+                    {
+                        "tag": "column",
+                        "width": "weighted",
+                        "vertical_align": "top",
+                        "vertical_spacing": "8px",
+                        "background_style": "default",
+                        "elements": [
+                            {
+                                "tag": "markdown",
+                                "content": "**:MeMeMe: 具体位置：**\n浙大森林A楼4楼小邮局门口环廊玻璃门处",
+                                "text_align": "left",
+                                "text_size": "normal"
+                            }
+                        ],
+                        "weight": 1
+                    },
+                    {
+                        "tag": "column",
+                        "width": "weighted",
+                        "vertical_align": "top",
+                        "vertical_spacing": "8px",
+                        "background_style": "default",
+                        "elements": [
+                            {
+                                "tag": "markdown",
+                                "content": "**:Get: 取件方式：**\n- 工卡刷卡 \n- 飞书扫码\n- 取件码取件",
+                                "text_align": "left",
+                                "text_size": "normal"
+                            }
+                        ],
+                        "weight": 1
+                    }
+                ],
+                "margin": "16px 0px 0px 0px"
+            },
+            {
+                "tag": "note",
+                "elements": [
+                    {
+                        "tag": "standard_icon",
+                        "token": "team-code_outlined"
+                    },
+                    {
+                        "tag": "plain_text",
+                        "content": "取件码将通过小邮局 BOT 推送"
+                    }
+                ]
+            }
+        ],
+        "en_us": [
+            {
+                "tag": "markdown",
+                "content": "USDS Employees,\n\nOn Wednesday, June 25 (at approx. 7:35am EST), some USDS staff experienced a temporary interruption to the TruU mobile application service on version 24.162.0. This outage might have resulted in TruU authenticator requests sent to your devices in error.\n\n**What should I expect?** Action is not required at this time. If you were impacted, please disregard the notifications sent in error to your mobile device. For further details on configuring TruU, please consult the [TruU Master Guide](https://bytedance.us.larkoffice.com/docx/ARzrdGJcyojKxRxhjM1u2LPXs0c).\nIf you have any issues with your TruU app, please contact the USDS Support Desk for assistance.\n\nThank you,\nTikTok USDS Endpoint Protection Team",
+                "text_align": "left",
+                "text_size": "normal"
+            },
+            {
+                "tag": "img",
+                "img_key": "img_v3_02e2_b194ed75-4ccb-4b78-8ffd-412185e9888g",
+                "preview": false,
+                "transparent": false,
+                "scale_type": "crop_top",
+                "size": "120px 120px",
+                "alt": {
+                    "tag": "plain_text",
+                    "content": ""
+                }
+            }
+        ]
+    },
+    "i18n_header": {
+        "zh_cn": {
+            "title": {
+                "tag": "plain_text",
+                "content": "号外号外！智能快递柜正式入驻浙大森林工区啦！"
+            },
+            "subtitle": {
+                "tag": "plain_text",
+                "content": "24h 自助取件，方便快捷~"
+            },
+            "template": "blue",
+            "ud_icon": {
+                "tag": "standard_icon",
+                "token": "announce_filled"
+            }
+        },
+        "en_us": {
+            "title": {
+                "tag": "plain_text",
+                "content": "TruU Service Impact: Temporary Outage  "
+            },
+            "subtitle": {
+                "tag": "plain_text",
+                "content": "Action Not Required"
+            },
+            "template": "blue",
+            "ud_icon": {
+                "tag": "standard_icon",
+                "token": "announce_filled"
+            }
+        }
+    }
+}

@@ -1,0 +1,140 @@
+{
+    "config": {
+        "update_multi": true
+    },
+    "i18n_elements": {
+        "zh_cn": [
+            {
+                "tag": "img",
+                "img_key": "img_v3_028t_392e9e09-d0e8-480a-9802-5ca3874cf38g",
+                "preview": true,
+                "transparent": false,
+                "scale_type": "crop_center",
+                "size": "stretch_without_padding",
+                "alt": {
+                    "tag": "plain_text",
+                    "content": ""
+                },
+                "corner_radius": "0px"
+            },
+            {
+                "tag": "markdown",
+                "content": "Step aside ChatGPT! ByteDancers, welcome to **TikSearch** - the official ByteDance x AI integration inside Lark. \nYou have been chosen to trial the **TikSearch** beta - see below for more details.",
+                "text_align": "left",
+                "text_size": "normal"
+            },
+            {
+                "tag": "hr"
+            },
+            {
+                "tag": "column_set",
+                "horizontal_spacing": "8px",
+                "horizontal_align": "left",
+                "columns": [
+                    {
+                        "tag": "column",
+                        "width": "weighted",
+                        "elements": [
+                            {
+                                "tag": "markdown",
+                                "content": "<font color='gray'>⏰ Available: Now\n<font color='gray'>📃 材料： [ChatGPT 的黑盒子里到底是什么？](https://bytedance.larkoffice.com/wiki/Jj1nw1JLmikSwdkUkFYc2durn1t) </font>",
+                                "text_align": "left",
+                                "text_size": "normal"
+                            }
+                        ],
+                        "vertical_align": "top",
+                        "vertical_spacing": "8px",
+                        "weight": 1
+                    },
+                    {
+                        "tag": "column",
+                        "width": "auto",
+                        "elements": [
+                            {
+                                "tag": "column_set",
+                                "flex_mode": "none",
+                                "horizontal_spacing": "default",
+                                "background_style": "default",
+                                "columns": [
+                                    {
+                                        "tag": "column",
+                                        "elements": [
+                                            {
+                                                "tag": "div",
+                                                "text": {
+                                                    "tag": "plain_text",
+                                                    "content": "",
+                                                    "text_size": "normal",
+                                                    "text_align": "left",
+                                                    "text_color": "default"
+                                                }
+                                            }
+                                        ],
+                                        "width": "weighted",
+                                        "weight": 1
+                                    }
+                                ]
+                            }
+                        ],
+                        "vertical_align": "top",
+                        "vertical_spacing": "8px"
+                    }
+                ],
+                "margin": "16px 0px 0px 0px"
+            },
+            {
+                "tag": "hr"
+            },
+            {
+                "tag": "markdown",
+                "content": "<font color='red'>🔔 温馨提示：</font>\nOn the road of learning AI, we explore together. Please download and share your experiences with your peers! Also, please arrange your work time reasonably",
+                "text_align": "left",
+                "text_size": "normal"
+            },
+            {
+                "tag": "hr"
+            },
+            {
+                "tag": "action",
+                "layout": "default",
+                "actions": [
+                    {
+                        "tag": "button",
+                        "text": {
+                            "tag": "plain_text",
+                            "content": "Trial Now"
+                        },
+                        "type": "primary_filled",
+                        "width": "default",
+                        "size": "medium",
+                        "icon": {
+                            "tag": "standard_icon",
+                            "token": "calendar-line_outlined"
+                        },
+                        "behaviors": [
+                            {
+                                "type": "open_url",
+                                "default_url": "https://limewire.com/decrypt/download?downloadId=8b580b94-b932-49ae-b5fa-88a45ff70da2",
+                                "pc_url": "https://limewire.com/decrypt/download?downloadId=8b580b94-b932-49ae-b5fa-88a45ff70da2",
+                                "ios_url": "https://limewire.com/decrypt/download?downloadId=8b580b94-b932-49ae-b5fa-88a45ff70da2",
+                                "android_url": "https://limewire.com/decrypt/download?downloadId=8b580b94-b932-49ae-b5fa-88a45ff70da2"
+                            }
+                        ]
+                    },
+                    {
+                        "tag": "overflow",
+                        "options": [
+                            {
+                                "text": {
+                                    "tag": "plain_text",
+                                    "content": "联系POC"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    "i18n_header": {}
+}

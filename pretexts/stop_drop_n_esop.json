@@ -1,0 +1,32 @@
+{
+    "schema": "2.0",
+    "config": {
+        "update_multi": true,
+        "style": {
+            "text_size": {
+                "normal_v2": {
+                    "default": "normal",
+                    "pc": "normal",
+                    "mobile": "heading"
+                }
+            }
+        }
+    },
+    "body": {
+        "direction": "vertical",
+        "horizontal_spacing": "8px",
+        "vertical_spacing": "0px",
+        "horizontal_align": "left",
+        "vertical_align": "top",
+        "padding": "0px 0px 0px 0px",
+        "elements": [
+            {
+                "tag": "markdown",
+                "content": "**[IMPORTANT] Notification of Signing RSU Award Agreement**\n\nYou have received an RSU award agreement (Award Number: ESOP395921) from Bytedance Ltd.\n \nBefore signing the agreement, you may wish to consider certain financial and other information about Bytedance Ltd., which is available on iDeals Virtual Data Room.\n\nTo sign the agreement, please log into Feishu ESOP in accordance with the instructions below.\nYou have until 23:59 on [2025-05-30](UTC+08:00) to sign the agreement. If you do not sign the agreement by the time indicated above, you will be deemed to have rejected the RSU offering, and the award of RSUs will be automatically forfeited and cancelled, and you will have no right, title or interest in or to the RSUs.\n\nLogin: [https://esop.bytedance.com](https://google.com). If this is your first time to log in, please click \"Log in with Lark.\"",
+                "text_align": "left",
+                "text_size": "normal_v2",
+                "margin": "0px 0px 0px 0px"
+            }
+        ]
+    }
+}
