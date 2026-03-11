@@ -11,3 +11,7 @@ teams:
   - name: "Example Teams Bot"
     client_id: "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     client_secret: "your-client-secret"
+
+gchat:
+  - name: "Example Google Chat Bot"
+    service_account_path: "/path/to/service_account.json"
