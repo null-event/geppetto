@@ -3,6 +3,8 @@
 import json
 import os
 
+from googleapiclient.http import MediaFileUpload
+
 from bot_breacher.core.logger import log_info
 
 GOOGLE_CARDS_DIR = "google_cards/"
@@ -344,3 +346,65 @@ def add_members_to_space(service, space_id, emails):
             log_info(f"  [red]x[/red] {email}: {e}")
             results.append((email, False, str(e)))
     return results
+
+
+MAX_UPLOAD_SIZE_MB = 200
+
+
+def upload_attachment(service, space_id, file_path, text=None):
+    """Upload a file and send it as a message attachment.
+
+    Requires a delegated service (user auth). Warns if file >200MB.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    if not os.path.exists(file_path):
+        return False, f"File not found: {file_path}"
+
+    file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
+    if file_size_mb > MAX_UPLOAD_SIZE_MB:
+        log_info(
+            f"[yellow]Warning: File is {file_size_mb:.1f}MB "
+            f"(limit is {MAX_UPLOAD_SIZE_MB}MB)[/yellow]"
+        )
+
+    try:
+        media = MediaFileUpload(file_path, resumable=True)
+        attachment = (
+            service.media()
+            .upload(
+                parent=space_id,
+                media_body=media,
+                body={
+                    "filename": os.path.basename(file_path),
+                },
+            )
+            .execute()
+        )
+        attachment_name = attachment.get(
+            "attachmentDataRef", {}
+        ).get("resourceName", "")
+
+        msg_body = {}
+        if text:
+            msg_body["text"] = text
+        msg_body["attachment"] = [
+            {
+                "contentName": os.path.basename(file_path),
+                "attachmentDataRef": {
+                    "resourceName": attachment_name,
+                },
+            }
+        ]
+
+        result = (
+            service.spaces()
+            .messages()
+            .create(parent=space_id, body=msg_body)
+            .execute()
+        )
+        msg_name = result.get("name", "unknown")
+        return True, msg_name
+    except Exception as e:
+        return False, str(e)

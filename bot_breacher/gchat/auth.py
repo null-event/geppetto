@@ -92,3 +92,42 @@ def check_capabilities(service, creds, has_delegate=False):
         log_info(f"  {icon} {labels[cap]}")
 
     return caps
+
+
+UPLOAD_SCOPES = [
+    "https://www.googleapis.com/auth/chat.messages.create",
+]
+
+
+def create_delegated_service(service_account_path, delegate_email):
+    """Create a Chat API service with domain-wide delegation.
+
+    Impersonates the given user for operations requiring user auth
+    (e.g. media uploads).
+
+    Returns:
+        Google Chat API service object, or None on failure.
+    """
+    if not os.path.exists(service_account_path):
+        log_info(
+            f"[red]Service account file not found: "
+            f"{service_account_path}[/red]"
+        )
+        return None
+
+    try:
+        creds = service_account.Credentials.from_service_account_file(
+            service_account_path, scopes=UPLOAD_SCOPES
+        )
+        delegated = creds.with_subject(delegate_email)
+        service = build("chat", "v1", credentials=delegated)
+        log_info(
+            f"[green]Delegated service created as "
+            f"{delegate_email}[/green]"
+        )
+        return service
+    except Exception as e:
+        log_info(
+            f"[red]Delegated auth failed: {e}[/red]"
+        )
+        return None

@@ -15,3 +15,5 @@ teams:
 gchat:
   - name: "Example Google Chat Bot"
     service_account_path: "/path/to/service_account.json"
+    # Optional: required for file attachments (domain-wide delegation)
+    # delegate_user_email: "admin@example.com"
