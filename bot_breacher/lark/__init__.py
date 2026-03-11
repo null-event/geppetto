@@ -35,7 +35,7 @@ def run_lark_menu(entry):
 
         cards = list_cards()
         if not cards:
-            log_info("[red]No pretext cards found in pretexts/[/red]")
+            log_info("[red]No pretext cards found in lark_cards/[/red]")
             continue
 
         card_choice = questionary.select(

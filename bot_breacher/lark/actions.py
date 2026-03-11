@@ -9,7 +9,7 @@ from bot_breacher.core.logger import log_info
 from bot_breacher.lark.auth import BASE_URL
 
 
-PRETEXTS_DIR = "pretexts/"
+PRETEXTS_DIR = "lark_cards/"
 
 
 def list_cards():

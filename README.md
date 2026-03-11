@@ -18,7 +18,7 @@ Offensive security framework for authorized red team and phishing simulation exe
 - **Interactive cards** — send rich card messages from pretext JSON templates
 - **Card editing** — modify previously sent cards by message ID
 - **Email-to-chat resolution** — resolve target emails to Lark chat IDs
-- Pretext cards are loaded from the `pretexts/` directory
+- Pretext cards are loaded from the `lark_cards/` directory
 
 ### Microsoft Teams
 - **Direct messages** — send messages to users via Bot Framework
@@ -114,7 +114,7 @@ Each platform follows the same pattern: `auth.py` handles authentication, `actio
 |------|---------|
 | `config.yaml` | Platform credentials (gitignored) |
 | `targets.txt` | Target email list (gitignored) |
-| `pretexts/` | Lark interactive card JSON templates |
+| `lark_cards/` | Lark interactive card JSON templates |
 | `google_cards/` | Google Chat CardV2 JSON templates |
 | `logs/` | JSON session logs (gitignored, auto-created) |
 
