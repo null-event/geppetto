@@ -29,10 +29,16 @@ Offensive security framework for authorized red team and phishing simulation exe
 ### Google Chat
 - **Space discovery** — list all spaces the bot has access to
 - **Space recon** — retrieve space metadata and member lists
+- **List bot messages** — list messages sent by the bot in a space
 - **Text messages (targeted)** — send plaintext to a specific space
 - **Text messages (blast)** — send plaintext to all spaces, filtered by type (Space, Group Chat, DM)
 - **Card messages (targeted)** — send CardV2 messages to a specific space
 - **Card messages (blast)** — send CardV2 messages to all spaces, filtered by type
+- **File attachments (targeted/blast)** — upload and send files with optional text (requires domain-wide delegation)
+- **Update messages** — modify previously sent bot messages (text or card)
+- **Delete messages** — remove bot-sent messages
+- **Create space + add members** — create a named space and invite members by email
+- **Capability detection** — automatically enumerates bot permissions on auth
 - Built-in System Alert card or custom templates from `google_cards/`
 - Uses service account credentials via `google-auth`
 
