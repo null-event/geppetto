@@ -398,13 +398,21 @@ def run_gchat_menu(entry):
             )
 
         elif action == "Create space + add members":
+            customer_id = entry.get("customer_id")
+            if not customer_id:
+                customer_id = questionary.text(
+                    "Google Workspace customer ID "
+                    "(found in Admin Console > Account):"
+                ).ask()
+            if not customer_id:
+                continue
             display_name = questionary.text(
                 "Space display name:"
             ).ask()
             if not display_name:
                 continue
             space_name, detail = create_space(
-                service, display_name
+                service, display_name, customer_id
             )
             if not space_name:
                 log_result(

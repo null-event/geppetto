@@ -298,8 +298,13 @@ def load_google_card(filename):
         return None
 
 
-def create_space(service, display_name):
+def create_space(service, display_name, customer_id):
     """Create a named space.
+
+    Args:
+        service: Google Chat API service object.
+        display_name: Name for the new space.
+        customer_id: Google Workspace customer ID (required for app auth).
 
     Returns:
         (space_resource_name, detail) on success, (None, error) on failure.
@@ -309,6 +314,7 @@ def create_space(service, display_name):
             body={
                 "displayName": display_name,
                 "spaceType": "SPACE",
+                "customer": f"customers/{customer_id}",
             }
         ).execute()
         space_name = result.get("name", "unknown")
