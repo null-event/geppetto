@@ -2,7 +2,7 @@
 
 from slack.errors import SlackApiError
 
-from bot_phisher.core.logger import log_info, log_result
+from bot_breacher.core.logger import log_info, log_result
 
 
 def lookup_user_by_email(client, email):
@@ -18,15 +18,28 @@ def lookup_user_by_email(client, email):
 
 def lookup_channel(client, channel_name):
     """Resolve channel name to channel ID. Returns channel_id or None."""
+    cursor = None
     try:
-        result = client.conversations_list(
-            types="public_channel,private_channel"
-        )
-        for chan in result["channels"]:
-            if chan["name"] == channel_name:
-                return chan["id"]
+        while True:
+            kwargs = {
+                "types": "public_channel,private_channel",
+                "limit": 999,
+            }
+            if cursor:
+                kwargs["cursor"] = cursor
+            result = client.conversations_list(**kwargs)
+            for chan in result["channels"]:
+                if chan["name"] == channel_name:
+                    return chan["id"]
+            cursor = result.get(
+                "response_metadata", {}
+            ).get("next_cursor")
+            if not cursor:
+                break
     except SlackApiError as e:
-        log_info(f"[red]Channel lookup error: {e.response['error']}[/red]")
+        log_info(
+            f"[red]Channel lookup error: {e.response['error']}[/red]"
+        )
     return None
 
 

@@ -18,7 +18,7 @@ def init_log():
     logs_dir = Path("logs")
     logs_dir.mkdir(exist_ok=True)
     timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    _log_file = logs_dir / f"bot_phisher_{timestamp}.json"
+    _log_file = logs_dir / f"bot_breacher_{timestamp}.json"
 
 
 def log_result(platform, action, bot_name, target, status, detail=""):

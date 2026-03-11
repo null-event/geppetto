@@ -5,7 +5,7 @@ import json
 
 import requests
 
-from bot_phisher.core.logger import log_info
+from bot_breacher.core.logger import log_info
 
 
 TOKEN_URL = (

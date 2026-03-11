@@ -3,7 +3,7 @@
 from slack import WebClient
 from slack.errors import SlackApiError
 
-from bot_phisher.core.logger import log_info
+from bot_breacher.core.logger import log_info
 
 
 def create_client(token):
@@ -31,15 +31,22 @@ def check_permissions(client):
 def get_available_actions(perms):
     """Return list of action names available for the given permissions."""
     actions = []
+    has_channel_read = "channels:read" in perms
     if "chat:write.customize" in perms:
-        actions.append("Send spoofed message")
+        actions.append("Send spoofed message (to users)")
+        if has_channel_read:
+            actions.append("Send spoofed message (to channel)")
     if "chat:write" in perms:
-        actions.append("Send message (as bot)")
+        actions.append("Send message (to users)")
+        if has_channel_read:
+            actions.append("Send message (to channel)")
     if "files:write" in perms:
-        actions.append("Send file attachment")
+        actions.append("Send file attachment (to users)")
+        if has_channel_read:
+            actions.append("Send file attachment (to channel)")
     if "search:read" in perms:
         actions.append("Search for secrets")
-    if "channels:read" in perms:
+    if has_channel_read:
         actions.append("List channels")
     actions.append("Check token permissions")
     actions.append("Back to main menu")

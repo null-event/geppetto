@@ -58,7 +58,7 @@
                             },
                             {
                                 "tag": "markdown",
-                                "content": "##### <number_tag background_color=\"blue-500\" font_color=\"white\">1</number_tag> **Reminder: USDS JV Responsible AI Use Policy**",
+                                "content": "##### <number_tag background_color=\"blue-500\" font_color=\"white\">1</number_tag> **Reminder: Responsible AI Use Policy**",
                                 "text_align": "left",
                                 "text_size": "heading"
                             },
@@ -78,10 +78,10 @@
                                 "behaviors": [
                                     {
                                         "type": "open_url",
-                                        "default_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink",
-                                        "pc_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink",
-                                        "ios_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink",
-                                        "android_url": "https://bytedance.us.larkoffice.com/docx/BH5MdBWRCojTX3xPC5bu3o80sBG?from=from_copylink"
+                                        "default_url": "https://yahoo.com",
+                                        "pc_url": "https://yahoo.com",
+                                        "ios_url": "https://yahoo.com",
+                                        "android_url": "https://yahoo.com"
                                     }
                                 ],
                                 "margin": "0px 0px 0px 0px"

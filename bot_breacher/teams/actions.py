@@ -2,7 +2,7 @@
 
 import requests
 
-from bot_phisher.core.logger import log_info
+from bot_breacher.core.logger import log_info
 
 
 SERVICE_URL = "https://smba.trafficmanager.net/teams/"

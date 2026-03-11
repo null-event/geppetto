@@ -2,17 +2,17 @@
 
 import questionary
 
-from bot_phisher.core.cli import confirm_send, pick_targets_source
-from bot_phisher.core.logger import log_info, log_result
-from bot_phisher.core.targets import load_targets
-from bot_phisher.lark.actions import (
+from bot_breacher.core.cli import confirm_send, pick_targets_source
+from bot_breacher.core.logger import log_info, log_result
+from bot_breacher.core.targets import load_targets
+from bot_breacher.lark.actions import (
     edit_card,
     get_chat_id,
     list_cards,
     load_card,
     send_card,
 )
-from bot_phisher.lark.auth import get_tenant_token
+from bot_breacher.lark.auth import get_tenant_token
 
 
 def run_lark_menu(entry):

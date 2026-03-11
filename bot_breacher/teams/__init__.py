@@ -2,11 +2,11 @@
 
 import questionary
 
-from bot_phisher.core.cli import confirm_send, pick_targets_source
-from bot_phisher.core.logger import log_info, log_result
-from bot_phisher.core.targets import load_targets
-from bot_phisher.teams.actions import send_message_to_user
-from bot_phisher.teams.auth import (
+from bot_breacher.core.cli import confirm_send, pick_targets_source
+from bot_breacher.core.logger import log_info, log_result
+from bot_breacher.core.targets import load_targets
+from bot_breacher.teams.actions import send_message_to_user
+from bot_breacher.teams.auth import (
     decode_jwt_payload,
     enumerate_graph_permissions,
     get_bot_token,
