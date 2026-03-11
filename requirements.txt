@@ -3,3 +3,6 @@ slackclient==2.9.4
 rich==13.9.4
 questionary==2.1.0
 pyyaml==6.0.2
+pytest==7.4.3
+google-auth==2.49.0
+google-api-python-client==2.192.0
