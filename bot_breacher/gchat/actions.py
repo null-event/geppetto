@@ -109,6 +109,103 @@ def send_card_message(service, space_id, card_payload):
         return False, str(e)
 
 
+def list_bot_messages(service, space_id):
+    """List bot-sent messages in a space.
+
+    Returns:
+        List of dicts with name, text preview, and createTime.
+    """
+    try:
+        result = (
+            service.spaces()
+            .messages()
+            .list(parent=space_id, pageSize=50)
+            .execute()
+        )
+        messages = result.get("messages", [])
+        bot_msgs = []
+        for msg in messages:
+            sender = msg.get("sender", {})
+            if sender.get("type") != "BOT":
+                continue
+            text = msg.get("text", "")
+            if not text and msg.get("cardsV2"):
+                text = "[CardV2 message]"
+            bot_msgs.append({
+                "name": msg["name"],
+                "preview": text[:80],
+                "createTime": msg.get("createTime", ""),
+            })
+
+        if not bot_msgs:
+            log_info(
+                "[yellow]No bot messages found in space.[/yellow]"
+            )
+            return []
+
+        log_info(
+            f"[cyan]Found {len(bot_msgs)} bot message(s):[/cyan]"
+        )
+        for m in bot_msgs:
+            log_info(
+                f"  {m['name']} | {m['preview']} | "
+                f"{m['createTime']}"
+            )
+        return bot_msgs
+    except Exception as e:
+        log_info(f"[red]Failed to list messages: {e}[/red]")
+        return []
+
+
+def update_text_message(service, message_name, new_text):
+    """Update a bot-sent message with new text.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    try:
+        service.spaces().messages().patch(
+            name=message_name,
+            updateMask="text",
+            body={"text": new_text},
+        ).execute()
+        return True, f"Updated {message_name}"
+    except Exception as e:
+        return False, str(e)
+
+
+def update_card_message(service, message_name, card_payload):
+    """Update a bot-sent message with new CardV2 content.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    try:
+        service.spaces().messages().patch(
+            name=message_name,
+            updateMask="cardsV2",
+            body=card_payload,
+        ).execute()
+        return True, f"Card updated {message_name}"
+    except Exception as e:
+        return False, str(e)
+
+
+def delete_message(service, message_name):
+    """Delete a bot-sent message.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    try:
+        service.spaces().messages().delete(
+            name=message_name
+        ).execute()
+        return True, f"Deleted {message_name}"
+    except Exception as e:
+        return False, str(e)
+
+
 def build_system_alert_card(space_id, alert_text):
     """Construct the built-in System Alert CardV2 payload."""
     icon_url = (
