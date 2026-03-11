@@ -79,10 +79,11 @@ def send_text_message(service, space_id, text):
         (ok, detail) tuple.
     """
     try:
-        service.spaces().messages().create(
+        result = service.spaces().messages().create(
             parent=space_id, body={"text": text}
         ).execute()
-        return True, f"Delivered to {space_id}"
+        msg_name = result.get("name", "unknown")
+        return True, msg_name
     except Exception as e:
         return False, str(e)
 
@@ -99,10 +100,11 @@ def send_card_message(service, space_id, card_payload):
         (ok, detail) tuple.
     """
     try:
-        service.spaces().messages().create(
+        result = service.spaces().messages().create(
             parent=space_id, body=card_payload
         ).execute()
-        return True, f"Card delivered to {space_id}"
+        msg_name = result.get("name", "unknown")
+        return True, msg_name
     except Exception as e:
         return False, str(e)
 
