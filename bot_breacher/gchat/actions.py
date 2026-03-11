@@ -294,3 +294,53 @@ def load_google_card(filename):
     except (json.JSONDecodeError, OSError) as e:
         log_info(f"[red]Failed to load card {filename}: {e}[/red]")
         return None
+
+
+def create_space(service, display_name):
+    """Create a named space.
+
+    Returns:
+        (space_resource_name, detail) on success, (None, error) on failure.
+    """
+    try:
+        result = service.spaces().create(
+            body={
+                "displayName": display_name,
+                "spaceType": "SPACE",
+            }
+        ).execute()
+        space_name = result.get("name", "unknown")
+        log_info(
+            f"[green]Created space:[/green] {space_name} "
+            f"({display_name})"
+        )
+        return space_name, f"Created {space_name}"
+    except Exception as e:
+        log_info(f"[red]Failed to create space: {e}[/red]")
+        return None, str(e)
+
+
+def add_members_to_space(service, space_id, emails):
+    """Add members to a space by email.
+
+    Returns:
+        List of (email, ok, detail) tuples.
+    """
+    results = []
+    for email in emails:
+        try:
+            service.spaces().members().create(
+                parent=space_id,
+                body={
+                    "member": {
+                        "name": f"users/{email}",
+                        "type": "HUMAN",
+                    }
+                },
+            ).execute()
+            log_info(f"  [green]+[/green] {email}")
+            results.append((email, True, "Added"))
+        except Exception as e:
+            log_info(f"  [red]x[/red] {email}: {e}")
+            results.append((email, False, str(e)))
+    return results

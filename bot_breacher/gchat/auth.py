@@ -7,7 +7,11 @@ from googleapiclient.discovery import build
 
 from bot_breacher.core.logger import log_info
 
-SCOPES = ["https://www.googleapis.com/auth/chat.bot"]
+SCOPES = [
+    "https://www.googleapis.com/auth/chat.bot",
+    "https://www.googleapis.com/auth/chat.app.spaces.create",
+    "https://www.googleapis.com/auth/chat.app.memberships",
+]
 
 
 def create_service(service_account_path):
