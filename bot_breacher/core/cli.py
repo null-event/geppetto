@@ -12,18 +12,25 @@ from bot_breacher.core.logger import init_log, log_info
 
 console = Console()
 
-BANNER = r"""
- ____        _     ____                      _
-| __ )  ___ | |_  | __ ) _ __ ___  __ _  ___| |__   ___ _ __
-|  _ \ / _ \| __| |  _ \| '__/ _ \/ _` |/ __| '_ \ / _ \ '__|
-| |_) | (_) | |_  | |_) | | |  __/ (_| | (__| | | |  __/ |
-|____/ \___/ \__| |____/|_|  \___|\__,_|\___|_| |_|\___|_|
-"""
+BANNER_LINES = [
+    ("bold red",    r"  ____        _     ____                      _               "),
+    ("bold yellow", r" | __ )  ___ | |_  | __ ) _ __ ___  __ _  ___| |__   ___ _ __ "),
+    ("bold green",  r" |  _ \ / _ \| __| |  _ \| '__/ _ \/ _` |/ __| '_ \ / _ \ '__|"),
+    ("bold cyan",   r" | |_) | (_) | |_  | |_) | | |  __/ (_| | (__| | | |  __/ |   "),
+    ("bold blue",   r" |____/ \___/ \__| |____/|_|  \___|\__,_|\___|_| |_|\___|_|   "),
+    ("bold magenta", ""),
+    ("bold white",  r"      +-+-+-+-+-+-+-+-+  +-+-+-+-+-+-+-+-+-+-+-+               "),
+    ("bold red",    r"      |E|n|t|e|r|p|r|i|s|e|  |M|s|g|  |P|w|n|r|             "),
+    ("bold white",  r"      +-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+               "),
+]
 
 
 def show_banner():
     """Display the bot-breacher banner."""
-    console.print(BANNER, style="bold cyan")
+    console.print()
+    for style, line in BANNER_LINES:
+        console.print(line, style=style)
+    console.print()
 
 
 def pick_platform():
