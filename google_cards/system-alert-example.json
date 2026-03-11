@@ -1,0 +1,28 @@
+{
+    "cardsV2": [
+        {
+            "cardId": "system_alert_example",
+            "card": {
+                "header": {
+                    "title": "SYSTEM SECURITY ALERT",
+                    "subtitle": "See below for details",
+                    "imageUrl": "https://developers.google.com/chat/images/chat-product-icon.png",
+                    "imageType": "CIRCLE"
+                },
+                "sections": [
+                    {
+                        "header": "Alert Details",
+                        "collapsible": false,
+                        "widgets": [
+                            {
+                                "textParagraph": {
+                                    "text": "<b>Notice:</b> This is an example system alert card template. Edit this file to customize for your engagement."
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
