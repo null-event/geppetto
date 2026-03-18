@@ -11,6 +11,7 @@ SCOPES = [
     "https://www.googleapis.com/auth/chat.bot",
     "https://www.googleapis.com/auth/chat.app.spaces.create",
     "https://www.googleapis.com/auth/chat.app.memberships",
+    "https://www.googleapis.com/auth/chat.messages.readonly",
 ]
 
 
@@ -94,9 +95,50 @@ def check_capabilities(service, creds, has_delegate=False):
     return caps
 
 
+ADMIN_SCOPES = [
+    "https://www.googleapis.com/auth/admin.directory.customer.readonly",
+]
+
 UPLOAD_SCOPES = [
     "https://www.googleapis.com/auth/chat.messages.create",
 ]
+
+
+def fetch_customer_id(service_account_path, delegate_email):
+    """Fetch the Google Workspace customer ID via Admin SDK.
+
+    Requires domain-wide delegation with
+    admin.directory.customer.readonly scope.
+
+    Returns:
+        Customer ID string, or None on failure.
+    """
+    if not os.path.exists(service_account_path):
+        return None
+
+    try:
+        creds = service_account.Credentials.from_service_account_file(
+            service_account_path, scopes=ADMIN_SCOPES
+        )
+        delegated = creds.with_subject(delegate_email)
+        admin_service = build(
+            "admin", "directory_v1", credentials=delegated
+        )
+        result = admin_service.customers().get(
+            customerKey="my_customer"
+        ).execute()
+        customer_id = result.get("id")
+        if customer_id:
+            log_info(
+                f"[green]Customer ID resolved:[/green] "
+                f"{customer_id}"
+            )
+        return customer_id
+    except Exception as e:
+        log_info(
+            f"[yellow]Could not fetch customer ID: {e}[/yellow]"
+        )
+        return None
 
 
 def create_delegated_service(service_account_path, delegate_email):

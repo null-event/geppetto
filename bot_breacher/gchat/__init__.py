@@ -27,6 +27,7 @@ from bot_breacher.gchat.auth import (
     check_capabilities,
     create_delegated_service,
     create_service,
+    fetch_customer_id,
 )
 
 SPACE_TYPES = ["SPACE", "GROUP_CHAT", "DIRECT_MESSAGE"]
@@ -399,6 +400,13 @@ def run_gchat_menu(entry):
 
         elif action == "Create space + add members":
             customer_id = entry.get("customer_id")
+            if not customer_id:
+                delegate_email = entry.get("delegate_user_email")
+                if delegate_email:
+                    customer_id = fetch_customer_id(
+                        entry["service_account_path"],
+                        delegate_email,
+                    )
             if not customer_id:
                 customer_id = questionary.text(
                     "Google Workspace customer ID "
