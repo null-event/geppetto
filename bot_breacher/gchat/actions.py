@@ -3,6 +3,8 @@
 import json
 import os
 
+from googleapiclient.http import MediaFileUpload
+
 from bot_breacher.core.logger import log_info
 
 GOOGLE_CARDS_DIR = "google_cards/"
@@ -79,10 +81,11 @@ def send_text_message(service, space_id, text):
         (ok, detail) tuple.
     """
     try:
-        service.spaces().messages().create(
+        result = service.spaces().messages().create(
             parent=space_id, body={"text": text}
         ).execute()
-        return True, f"Delivered to {space_id}"
+        msg_name = result.get("name", "unknown")
+        return True, msg_name
     except Exception as e:
         return False, str(e)
 
@@ -99,10 +102,108 @@ def send_card_message(service, space_id, card_payload):
         (ok, detail) tuple.
     """
     try:
-        service.spaces().messages().create(
+        result = service.spaces().messages().create(
             parent=space_id, body=card_payload
         ).execute()
-        return True, f"Card delivered to {space_id}"
+        msg_name = result.get("name", "unknown")
+        return True, msg_name
+    except Exception as e:
+        return False, str(e)
+
+
+def list_bot_messages(service, space_id):
+    """List bot-sent messages in a space.
+
+    Returns:
+        List of dicts with name, text preview, and createTime.
+    """
+    try:
+        result = (
+            service.spaces()
+            .messages()
+            .list(parent=space_id, pageSize=50)
+            .execute()
+        )
+        messages = result.get("messages", [])
+        bot_msgs = []
+        for msg in messages:
+            sender = msg.get("sender", {})
+            if sender.get("type") != "BOT":
+                continue
+            text = msg.get("text", "")
+            if not text and msg.get("cardsV2"):
+                text = "[CardV2 message]"
+            bot_msgs.append({
+                "name": msg["name"],
+                "preview": text[:80],
+                "createTime": msg.get("createTime", ""),
+            })
+
+        if not bot_msgs:
+            log_info(
+                "[yellow]No bot messages found in space.[/yellow]"
+            )
+            return []
+
+        log_info(
+            f"[cyan]Found {len(bot_msgs)} bot message(s):[/cyan]"
+        )
+        for m in bot_msgs:
+            log_info(
+                f"  {m['name']} | {m['preview']} | "
+                f"{m['createTime']}"
+            )
+        return bot_msgs
+    except Exception as e:
+        log_info(f"[red]Failed to list messages: {e}[/red]")
+        return []
+
+
+def update_text_message(service, message_name, new_text):
+    """Update a bot-sent message with new text.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    try:
+        service.spaces().messages().patch(
+            name=message_name,
+            updateMask="text",
+            body={"text": new_text},
+        ).execute()
+        return True, f"Updated {message_name}"
+    except Exception as e:
+        return False, str(e)
+
+
+def update_card_message(service, message_name, card_payload):
+    """Update a bot-sent message with new CardV2 content.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    try:
+        service.spaces().messages().patch(
+            name=message_name,
+            updateMask="cardsV2",
+            body=card_payload,
+        ).execute()
+        return True, f"Card updated {message_name}"
+    except Exception as e:
+        return False, str(e)
+
+
+def delete_message(service, message_name):
+    """Delete a bot-sent message.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    try:
+        service.spaces().messages().delete(
+            name=message_name
+        ).execute()
+        return True, f"Deleted {message_name}"
     except Exception as e:
         return False, str(e)
 
@@ -195,3 +296,121 @@ def load_google_card(filename):
     except (json.JSONDecodeError, OSError) as e:
         log_info(f"[red]Failed to load card {filename}: {e}[/red]")
         return None
+
+
+def create_space(service, display_name, customer_id):
+    """Create a named space.
+
+    Args:
+        service: Google Chat API service object.
+        display_name: Name for the new space.
+        customer_id: Google Workspace customer ID (required for app auth).
+
+    Returns:
+        (space_resource_name, detail) on success, (None, error) on failure.
+    """
+    try:
+        result = service.spaces().create(
+            body={
+                "displayName": display_name,
+                "spaceType": "SPACE",
+                "customer": f"customers/{customer_id}",
+            }
+        ).execute()
+        space_name = result.get("name", "unknown")
+        log_info(
+            f"[green]Created space:[/green] {space_name} "
+            f"({display_name})"
+        )
+        return space_name, f"Created {space_name}"
+    except Exception as e:
+        log_info(f"[red]Failed to create space: {e}[/red]")
+        return None, str(e)
+
+
+def add_members_to_space(service, space_id, emails):
+    """Add members to a space by email.
+
+    Returns:
+        List of (email, ok, detail) tuples.
+    """
+    results = []
+    for email in emails:
+        try:
+            service.spaces().members().create(
+                parent=space_id,
+                body={
+                    "member": {
+                        "name": f"users/{email}",
+                        "type": "HUMAN",
+                    }
+                },
+            ).execute()
+            log_info(f"  [green]+[/green] {email}")
+            results.append((email, True, "Added"))
+        except Exception as e:
+            log_info(f"  [red]x[/red] {email}: {e}")
+            results.append((email, False, str(e)))
+    return results
+
+
+MAX_UPLOAD_SIZE_MB = 200
+
+
+def upload_attachment(service, space_id, file_path, text=None):
+    """Upload a file and send it as a message attachment.
+
+    Requires a delegated service (user auth). Warns if file >200MB.
+
+    Returns:
+        (ok, detail) tuple.
+    """
+    if not os.path.exists(file_path):
+        return False, f"File not found: {file_path}"
+
+    file_size_mb = os.path.getsize(file_path) / (1024 * 1024)
+    if file_size_mb > MAX_UPLOAD_SIZE_MB:
+        log_info(
+            f"[yellow]Warning: File is {file_size_mb:.1f}MB "
+            f"(limit is {MAX_UPLOAD_SIZE_MB}MB)[/yellow]"
+        )
+
+    try:
+        media = MediaFileUpload(file_path, resumable=True)
+        attachment = (
+            service.media()
+            .upload(
+                parent=space_id,
+                media_body=media,
+                body={
+                    "filename": os.path.basename(file_path),
+                },
+            )
+            .execute()
+        )
+        attachment_name = attachment.get(
+            "attachmentDataRef", {}
+        ).get("resourceName", "")
+
+        msg_body = {}
+        if text:
+            msg_body["text"] = text
+        msg_body["attachment"] = [
+            {
+                "contentName": os.path.basename(file_path),
+                "attachmentDataRef": {
+                    "resourceName": attachment_name,
+                },
+            }
+        ]
+
+        result = (
+            service.spaces()
+            .messages()
+            .create(parent=space_id, body=msg_body)
+            .execute()
+        )
+        msg_name = result.get("name", "unknown")
+        return True, msg_name
+    except Exception as e:
+        return False, str(e)
