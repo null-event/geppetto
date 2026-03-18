@@ -22,6 +22,8 @@ BANNER_LINES = [
     ("bold white",  r"      +-+-+-+-+-+-+-+-+  +-+-+-+-+-+-+-+-+-+-+-+               "),
     ("bold red",    r"      |E|n|t|e|r|p|r|i|s|e|  |M|s|g|  |P|w|n|r|             "),
     ("bold white",  r"      +-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+               "),
+    ("bold magenta", ""),
+    ("dim white",   r"                  @null-event  &  @Wi1DN00B                    "),
 ]
 
 
