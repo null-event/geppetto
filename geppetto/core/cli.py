@@ -13,17 +13,18 @@ from geppetto.core.logger import init_log, log_info
 console = Console()
 
 BANNER_LINES = [
-    ("bold red",    r"  ____        _     ____                      _               "),
-    ("bold yellow", r" | __ )  ___ | |_  | __ ) _ __ ___  __ _  ___| |__   ___ _ __ "),
-    ("bold green",  r" |  _ \ / _ \| __| |  _ \| '__/ _ \/ _` |/ __| '_ \ / _ \ '__|"),
-    ("bold cyan",   r" | |_) | (_) | |_  | |_) | | |  __/ (_| | (__| | | |  __/ |   "),
-    ("bold blue",   r" |____/ \___/ \__| |____/|_|  \___|\__,_|\___|_| |_|\___|_|   "),
-    ("bold magenta", ""),
-    ("bold white",  r"      +-+-+-+-+-+-+-+-+  +-+-+-+-+-+-+-+-+-+-+-+               "),
-    ("bold red",    r"      |E|n|t|e|r|p|r|i|s|e|  |M|s|g|  |P|w|n|r|             "),
-    ("bold white",  r"      +-+-+-+-+-+-+-+-+--+-+-+-+-+-+-+-+-+-+-+-+               "),
-    ("bold magenta", ""),
-    ("dim white",   r"                  @null-event  &  @Wi1DN00B                    "),
+    ("bold red",    r"                                  _   _        "),
+    ("bold yellow", r"   __ _  ___ _ __  _ __   ___  __| |_| |_ ___  "),
+    ("bold green",  r"  / _` |/ _ \ '_ \| '_ \ / _ \/ _` __| __/ _ \ "),
+    ("bold cyan",   r" | (_| |  __/ |_) | |_) |  __/ (_| |_| || (_) |"),
+    ("bold blue",   r"  \__, |\___| .__/| .__/ \___|\__,_\__|\__\___/ "),
+    ("bold magenta",r"  |___/     |_|   |_|                           "),
+    ("bold white",  ""),
+    ("bold red",    r"      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  "),
+    ("bold yellow", r"      |I|M| |B|o|t| |P|u|p|p|e|t| |M|a|s|t|e|r| "),
+    ("bold red",    r"      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  "),
+    ("bold white",  ""),
+    ("dim white",   r"              @null-event  &  @Wi1DN00B         "),
 ]
 
 
