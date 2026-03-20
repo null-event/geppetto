@@ -5,8 +5,8 @@ import os
 
 import requests
 
-from bot_breacher.core.logger import log_info
-from bot_breacher.lark.auth import BASE_URL
+from geppetto.core.logger import log_info
+from geppetto.lark.auth import BASE_URL
 
 
 PRETEXTS_DIR = "lark_cards/"

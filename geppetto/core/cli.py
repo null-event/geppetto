@@ -6,8 +6,8 @@ import questionary
 from rich.console import Console
 from rich.panel import Panel
 
-from bot_breacher.core.config import get_platform_entries, load_config
-from bot_breacher.core.logger import init_log, log_info
+from geppetto.core.config import get_platform_entries, load_config
+from geppetto.core.logger import init_log, log_info
 
 
 console = Console()
@@ -28,7 +28,7 @@ BANNER_LINES = [
 
 
 def show_banner():
-    """Display the bot-breacher banner."""
+    """Display the geppetto banner."""
     console.print()
     for style, line in BANNER_LINES:
         console.print(line, style=style)
@@ -95,7 +95,7 @@ def main():
     while True:
         platform = pick_platform()
         if not platform or platform == "Exit":
-            log_info("[yellow]Exiting bot-breacher.[/yellow]")
+            log_info("[yellow]Exiting geppetto.[/yellow]")
             sys.exit(0)
 
         platform_key = platform.lower()
@@ -112,14 +112,14 @@ def main():
             continue
 
         if platform_key == "slack":
-            from bot_breacher.slack import run_slack_menu
+            from geppetto.slack import run_slack_menu
             run_slack_menu(entry)
         elif platform_key == "lark":
-            from bot_breacher.lark import run_lark_menu
+            from geppetto.lark import run_lark_menu
             run_lark_menu(entry)
         elif platform_key == "teams":
-            from bot_breacher.teams import run_teams_menu
+            from geppetto.teams import run_teams_menu
             run_teams_menu(entry)
         elif platform_key == "google chat":
-            from bot_breacher.gchat import run_gchat_menu
+            from geppetto.gchat import run_gchat_menu
             run_gchat_menu(entry)

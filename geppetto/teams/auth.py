@@ -5,7 +5,7 @@ import json
 
 import requests
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 
 TOKEN_URL = (

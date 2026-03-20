@@ -2,11 +2,11 @@
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send, pick_targets_source
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.core.targets import load_targets
-from bot_breacher.teams.actions import send_message_to_user
-from bot_breacher.teams.auth import (
+from geppetto.core.cli import confirm_send, pick_targets_source
+from geppetto.core.logger import log_info, log_result
+from geppetto.core.targets import load_targets
+from geppetto.teams.actions import send_message_to_user
+from geppetto.teams.auth import (
     decode_jwt_payload,
     enumerate_graph_permissions,
     get_bot_token,

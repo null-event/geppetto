@@ -2,7 +2,7 @@
 
 ## Overview
 
-Add update messages, delete messages, create spaces with member addition, and file attachments to the existing Google Chat module in bot-breacher.
+Add update messages, delete messages, create spaces with member addition, and file attachments to the existing Google Chat module in geppetto.
 
 ## Auth
 
@@ -100,5 +100,5 @@ Updated action menu (6 new items, 13 total):
 
 ## Files Changed
 
-- Modify: `bot_breacher/gchat/actions.py` — add 7 new functions, modify 2 existing
-- Modify: `bot_breacher/gchat/__init__.py` — add 6 new menu items and their flows
+- Modify: `geppetto/gchat/actions.py` — add 7 new functions, modify 2 existing
+- Modify: `geppetto/gchat/__init__.py` — add 6 new menu items and their flows

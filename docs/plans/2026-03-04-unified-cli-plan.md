@@ -1,10 +1,10 @@
-# Bot-Breacher Unified CLI — Implementation Plan
+# Geppetto Unified CLI — Implementation Plan
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
 **Goal:** Combine EvilSlackbot, LarkBotAbuser2, and teams-bot-validator into a single interactive CLI framework with Rich TUI menus, unified config, and structured logging.
 
-**Architecture:** Package-per-platform (`bot_breacher/slack/`, `bot_breacher/lark/`, `bot_breacher/teams/`) with shared core utilities in `bot_breacher/core/`. Entry point via `python -m bot_breacher`. All platform modules follow the same pattern: `auth.py` for authentication, `actions.py` for operations.
+**Architecture:** Package-per-platform (`geppetto/slack/`, `geppetto/lark/`, `geppetto/teams/`) with shared core utilities in `geppetto/core/`. Entry point via `python -m geppetto`. All platform modules follow the same pattern: `auth.py` for authentication, `actions.py` for operations.
 
 **Tech Stack:** Python 3.12, pip, requests, slackclient, rich, questionary, pyyaml
 
@@ -13,12 +13,12 @@
 ### Task 1: Project Scaffolding
 
 **Files:**
-- Create: `bot_breacher/__init__.py`
-- Create: `bot_breacher/__main__.py`
-- Create: `bot_breacher/core/__init__.py`
-- Create: `bot_breacher/slack/__init__.py`
-- Create: `bot_breacher/lark/__init__.py`
-- Create: `bot_breacher/teams/__init__.py`
+- Create: `geppetto/__init__.py`
+- Create: `geppetto/__main__.py`
+- Create: `geppetto/core/__init__.py`
+- Create: `geppetto/slack/__init__.py`
+- Create: `geppetto/lark/__init__.py`
+- Create: `geppetto/teams/__init__.py`
 - Create: `requirements.txt`
 - Create: `config.yaml.example`
 - Create: `.gitignore`
@@ -26,7 +26,7 @@
 **Step 1: Create directory structure**
 
 ```bash
-mkdir -p bot_breacher/core bot_breacher/slack bot_breacher/lark bot_breacher/teams
+mkdir -p geppetto/core geppetto/slack geppetto/lark geppetto/teams
 ```
 
 **Step 2: Create requirements.txt**
@@ -41,14 +41,14 @@ pyyaml==6.0.2
 
 **Step 3: Create all `__init__.py` files**
 
-Empty files for `bot_breacher/__init__.py`, `bot_breacher/core/__init__.py`, `bot_breacher/slack/__init__.py`, `bot_breacher/lark/__init__.py`, `bot_breacher/teams/__init__.py`.
+Empty files for `geppetto/__init__.py`, `geppetto/core/__init__.py`, `geppetto/slack/__init__.py`, `geppetto/lark/__init__.py`, `geppetto/teams/__init__.py`.
 
-**Step 4: Create `bot_breacher/__main__.py`** (minimal placeholder)
+**Step 4: Create `geppetto/__main__.py`** (minimal placeholder)
 
 ```python
-"""Bot-Breacher: Unified messaging platform attack framework."""
+"""Geppetto: Unified messaging platform attack framework."""
 
-from bot_breacher.core.cli import main
+from geppetto.core.cli import main
 
 if __name__ == "__main__":
     main()
@@ -97,8 +97,8 @@ cp -r LarkBotAbuser2/pretexts/ pretexts/
 
 ```bash
 git init
-git add bot_breacher/ requirements.txt config.yaml.example .gitignore pretexts/
-git commit -m "feat: scaffold bot-breacher project structure"
+git add geppetto/ requirements.txt config.yaml.example .gitignore pretexts/
+git commit -m "feat: scaffold geppetto project structure"
 ```
 
 ---
@@ -106,7 +106,7 @@ git commit -m "feat: scaffold bot-breacher project structure"
 ### Task 2: Core — Config Loader
 
 **Files:**
-- Create: `bot_breacher/core/config.py`
+- Create: `geppetto/core/config.py`
 
 **Step 1: Implement config.py**
 
@@ -166,13 +166,13 @@ def get_platform_entries(config, platform):
 
 **Step 2: Verify it loads**
 
-Run: `python -c "from bot_breacher.core.config import load_config; print('OK')"`
+Run: `python -c "from geppetto.core.config import load_config; print('OK')"`
 Expected: `OK`
 
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/core/config.py
+git add geppetto/core/config.py
 git commit -m "feat: add YAML config loader with validation"
 ```
 
@@ -181,7 +181,7 @@ git commit -m "feat: add YAML config loader with validation"
 ### Task 3: Core — Targets Loader
 
 **Files:**
-- Create: `bot_breacher/core/targets.py`
+- Create: `geppetto/core/targets.py`
 
 **Step 1: Implement targets.py**
 
@@ -211,13 +211,13 @@ def load_targets(targets_path="targets.txt"):
 
 **Step 2: Verify it loads**
 
-Run: `python -c "from bot_breacher.core.targets import load_targets; print('OK')"`
+Run: `python -c "from geppetto.core.targets import load_targets; print('OK')"`
 Expected: `OK`
 
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/core/targets.py
+git add geppetto/core/targets.py
 git commit -m "feat: add targets file loader"
 ```
 
@@ -226,7 +226,7 @@ git commit -m "feat: add targets file loader"
 ### Task 4: Core — Logger
 
 **Files:**
-- Create: `bot_breacher/core/logger.py`
+- Create: `geppetto/core/logger.py`
 
 **Step 1: Implement logger.py**
 
@@ -251,7 +251,7 @@ def init_log():
     logs_dir = Path("logs")
     logs_dir.mkdir(exist_ok=True)
     timestamp = datetime.now().strftime("%Y-%m-%d_%H%M%S")
-    _log_file = logs_dir / f"bot_breacher_{timestamp}.json"
+    _log_file = logs_dir / f"geppetto_{timestamp}.json"
 
 
 def log_result(platform, action, bot_name, target, status, detail=""):
@@ -284,13 +284,13 @@ def log_info(message):
 
 **Step 2: Verify it loads**
 
-Run: `python -c "from bot_breacher.core.logger import log_info; log_info('test'); print('OK')"`
+Run: `python -c "from geppetto.core.logger import log_info; log_info('test'); print('OK')"`
 Expected: prints `test` then `OK`
 
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/core/logger.py
+git add geppetto/core/logger.py
 git commit -m "feat: add dual-output logger (console + JSON file)"
 ```
 
@@ -299,7 +299,7 @@ git commit -m "feat: add dual-output logger (console + JSON file)"
 ### Task 5: Core — CLI Menus and Main Loop
 
 **Files:**
-- Create: `bot_breacher/core/cli.py`
+- Create: `geppetto/core/cli.py`
 
 **Step 1: Implement cli.py**
 
@@ -312,8 +312,8 @@ import questionary
 from rich.console import Console
 from rich.panel import Panel
 
-from bot_breacher.core.config import get_platform_entries, load_config
-from bot_breacher.core.logger import init_log, log_info
+from geppetto.core.config import get_platform_entries, load_config
+from geppetto.core.logger import init_log, log_info
 
 
 console = Console()
@@ -328,7 +328,7 @@ BANNER = r"""
 
 
 def show_banner():
-    """Display the bot-breacher banner."""
+    """Display the geppetto banner."""
     console.print(BANNER, style="bold cyan")
 
 
@@ -392,7 +392,7 @@ def main():
     while True:
         platform = pick_platform()
         if not platform or platform == "Exit":
-            log_info("[yellow]Exiting bot-breacher.[/yellow]")
+            log_info("[yellow]Exiting geppetto.[/yellow]")
             sys.exit(0)
 
         platform_key = platform.lower()
@@ -408,25 +408,25 @@ def main():
             continue
 
         if platform_key == "slack":
-            from bot_breacher.slack import run_slack_menu
+            from geppetto.slack import run_slack_menu
             run_slack_menu(entry)
         elif platform_key == "lark":
-            from bot_breacher.lark import run_lark_menu
+            from geppetto.lark import run_lark_menu
             run_lark_menu(entry)
         elif platform_key == "teams":
-            from bot_breacher.teams import run_teams_menu
+            from geppetto.teams import run_teams_menu
             run_teams_menu(entry)
 ```
 
 **Step 2: Verify CLI loads (will fail on missing platform menus, but import should work)**
 
-Run: `python -c "from bot_breacher.core.cli import show_banner; show_banner()"`
+Run: `python -c "from geppetto.core.cli import show_banner; show_banner()"`
 Expected: prints the banner
 
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/core/cli.py bot_breacher/__main__.py
+git add geppetto/core/cli.py geppetto/__main__.py
 git commit -m "feat: add interactive CLI menus and main loop"
 ```
 
@@ -435,7 +435,7 @@ git commit -m "feat: add interactive CLI menus and main loop"
 ### Task 6: Slack — Auth
 
 **Files:**
-- Create: `bot_breacher/slack/auth.py`
+- Create: `geppetto/slack/auth.py`
 
 **Step 1: Implement slack/auth.py**
 
@@ -447,7 +447,7 @@ Migrated from `EvilSlackbot/EvilSlackbot.py` — `checkperms()` and `token_attac
 from slack import WebClient
 from slack.errors import SlackApiError
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 
 def create_client(token):
@@ -492,13 +492,13 @@ def get_available_actions(perms):
 
 **Step 2: Verify import**
 
-Run: `python -c "from bot_breacher.slack.auth import get_available_actions; print(get_available_actions(['chat:write']))"`
+Run: `python -c "from geppetto.slack.auth import get_available_actions; print(get_available_actions(['chat:write']))"`
 Expected: `['Send message (as bot)', 'Check token permissions', 'Back to main menu']`
 
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/slack/auth.py
+git add geppetto/slack/auth.py
 git commit -m "feat: add Slack token auth and permission checking"
 ```
 
@@ -507,8 +507,8 @@ git commit -m "feat: add Slack token auth and permission checking"
 ### Task 7: Slack — Actions
 
 **Files:**
-- Create: `bot_breacher/slack/actions.py`
-- Modify: `bot_breacher/slack/__init__.py`
+- Create: `geppetto/slack/actions.py`
+- Modify: `geppetto/slack/__init__.py`
 
 **Step 1: Implement slack/actions.py**
 
@@ -519,7 +519,7 @@ Migrated from `EvilSlackbot/EvilSlackbot.py` — all send/search/list functions,
 
 from slack.errors import SlackApiError
 
-from bot_breacher.core.logger import log_info, log_result
+from geppetto.core.logger import log_info, log_result
 
 
 def lookup_user_by_email(client, email):
@@ -651,10 +651,10 @@ def list_channels(client, outfile=None):
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send, pick_targets_source
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.core.targets import load_targets
-from bot_breacher.slack.actions import (
+from geppetto.core.cli import confirm_send, pick_targets_source
+from geppetto.core.logger import log_info, log_result
+from geppetto.core.targets import load_targets
+from geppetto.slack.actions import (
     list_channels,
     lookup_user_by_email,
     search_messages,
@@ -662,7 +662,7 @@ from bot_breacher.slack.actions import (
     send_message,
     send_spoofed_message,
 )
-from bot_breacher.slack.auth import (
+from geppetto.slack.auth import (
     check_permissions,
     create_client,
     get_available_actions,
@@ -818,7 +818,7 @@ def run_slack_menu(entry):
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/slack/
+git add geppetto/slack/
 git commit -m "feat: add Slack actions and platform menu"
 ```
 
@@ -827,7 +827,7 @@ git commit -m "feat: add Slack actions and platform menu"
 ### Task 8: Lark — Auth
 
 **Files:**
-- Create: `bot_breacher/lark/auth.py`
+- Create: `geppetto/lark/auth.py`
 
 **Step 1: Implement lark/auth.py**
 
@@ -840,7 +840,7 @@ import json
 
 import requests
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 
 BASE_URL = "https://open.feishu.cn/open-apis/"
@@ -878,13 +878,13 @@ def get_tenant_token(app_id, app_secret):
 
 **Step 2: Verify import**
 
-Run: `python -c "from bot_breacher.lark.auth import BASE_URL; print(BASE_URL)"`
+Run: `python -c "from geppetto.lark.auth import BASE_URL; print(BASE_URL)"`
 Expected: `https://open.feishu.cn/open-apis/`
 
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/lark/auth.py
+git add geppetto/lark/auth.py
 git commit -m "feat: add Lark tenant token authentication"
 ```
 
@@ -893,8 +893,8 @@ git commit -m "feat: add Lark tenant token authentication"
 ### Task 9: Lark — Actions
 
 **Files:**
-- Create: `bot_breacher/lark/actions.py`
-- Modify: `bot_breacher/lark/__init__.py`
+- Create: `geppetto/lark/actions.py`
+- Modify: `geppetto/lark/__init__.py`
 
 **Step 1: Implement lark/actions.py**
 
@@ -908,8 +908,8 @@ import os
 
 import requests
 
-from bot_breacher.core.logger import log_info
-from bot_breacher.lark.auth import BASE_URL
+from geppetto.core.logger import log_info
+from geppetto.lark.auth import BASE_URL
 
 
 PRETEXTS_DIR = "pretexts/"
@@ -1017,17 +1017,17 @@ def edit_card(token, message_id, card_data):
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send, pick_targets_source
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.core.targets import load_targets
-from bot_breacher.lark.actions import (
+from geppetto.core.cli import confirm_send, pick_targets_source
+from geppetto.core.logger import log_info, log_result
+from geppetto.core.targets import load_targets
+from geppetto.lark.actions import (
     edit_card,
     get_chat_id,
     list_cards,
     load_card,
     send_card,
 )
-from bot_breacher.lark.auth import get_tenant_token
+from geppetto.lark.auth import get_tenant_token
 
 
 def run_lark_menu(entry):
@@ -1106,7 +1106,7 @@ def run_lark_menu(entry):
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/lark/
+git add geppetto/lark/
 git commit -m "feat: add Lark card send/edit actions and platform menu"
 ```
 
@@ -1115,7 +1115,7 @@ git commit -m "feat: add Lark card send/edit actions and platform menu"
 ### Task 10: Teams — Auth
 
 **Files:**
-- Create: `bot_breacher/teams/auth.py`
+- Create: `geppetto/teams/auth.py`
 
 **Step 1: Implement teams/auth.py**
 
@@ -1129,7 +1129,7 @@ import json
 
 import requests
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 
 TOKEN_URL = (
@@ -1220,13 +1220,13 @@ def enumerate_graph_permissions(token):
 
 **Step 2: Verify import**
 
-Run: `python -c "from bot_breacher.teams.auth import TOKEN_URL; print(TOKEN_URL)"`
+Run: `python -c "from geppetto.teams.auth import TOKEN_URL; print(TOKEN_URL)"`
 Expected: the Microsoft token URL
 
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/teams/auth.py
+git add geppetto/teams/auth.py
 git commit -m "feat: add Teams OAuth2 auth and Graph permission enumeration"
 ```
 
@@ -1235,8 +1235,8 @@ git commit -m "feat: add Teams OAuth2 auth and Graph permission enumeration"
 ### Task 11: Teams — Actions (Including New Message Sending)
 
 **Files:**
-- Create: `bot_breacher/teams/actions.py`
-- Modify: `bot_breacher/teams/__init__.py`
+- Create: `geppetto/teams/actions.py`
+- Modify: `geppetto/teams/__init__.py`
 
 **Step 1: Implement teams/actions.py**
 
@@ -1247,7 +1247,7 @@ New functionality: resolve email via Graph API, create 1:1 conversation via Bot 
 
 import requests
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 
 SERVICE_URL = "https://smba.trafficmanager.net/teams/"
@@ -1350,11 +1350,11 @@ def send_message_to_user(
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send, pick_targets_source
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.core.targets import load_targets
-from bot_breacher.teams.actions import send_message_to_user
-from bot_breacher.teams.auth import (
+from geppetto.core.cli import confirm_send, pick_targets_source
+from geppetto.core.logger import log_info, log_result
+from geppetto.core.targets import load_targets
+from geppetto.teams.actions import send_message_to_user
+from geppetto.teams.auth import (
     decode_jwt_payload,
     enumerate_graph_permissions,
     get_bot_token,
@@ -1463,7 +1463,7 @@ def run_teams_menu(entry):
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/teams/
+git add geppetto/teams/
 git commit -m "feat: add Teams message sending, validation, and Graph enumeration"
 ```
 
@@ -1473,7 +1473,7 @@ git commit -m "feat: add Teams message sending, validation, and Graph enumeratio
 
 **Step 1: Verify the full CLI starts and menus render**
 
-Run: `python -m bot_breacher`
+Run: `python -m geppetto`
 
 Expected: Banner prints, platform selection menu appears. Selecting "Exit" exits cleanly.
 
@@ -1487,27 +1487,27 @@ lark: []
 teams: []
 ```
 
-Run `python -m bot_breacher`, select each platform, verify "No credentials" message appears.
+Run `python -m geppetto`, select each platform, verify "No credentials" message appears.
 
 **Step 3: Verify Lark card listing works**
 
-Run: `python -c "from bot_breacher.lark.actions import list_cards; print(list_cards())"`
+Run: `python -c "from geppetto.lark.actions import list_cards; print(list_cards())"`
 Expected: list of `.json` filenames from `pretexts/`
 
 **Step 4: Verify all imports resolve**
 
 ```bash
 python -c "
-from bot_breacher.core.cli import main
-from bot_breacher.core.config import load_config
-from bot_breacher.core.logger import log_result, log_info
-from bot_breacher.core.targets import load_targets
-from bot_breacher.slack.auth import check_permissions
-from bot_breacher.slack.actions import send_message
-from bot_breacher.lark.auth import get_tenant_token
-from bot_breacher.lark.actions import send_card
-from bot_breacher.teams.auth import get_bot_token
-from bot_breacher.teams.actions import send_message_to_user
+from geppetto.core.cli import main
+from geppetto.core.config import load_config
+from geppetto.core.logger import log_result, log_info
+from geppetto.core.targets import load_targets
+from geppetto.slack.auth import check_permissions
+from geppetto.slack.actions import send_message
+from geppetto.lark.auth import get_tenant_token
+from geppetto.lark.actions import send_card
+from geppetto.teams.auth import get_bot_token
+from geppetto.teams.actions import send_message_to_user
 print('All imports OK')
 "
 ```
@@ -1534,5 +1534,5 @@ Add the new entry point, config format, and project structure. Keep the legacy t
 
 ```bash
 git add CLAUDE.md
-git commit -m "docs: update CLAUDE.md for unified bot-breacher CLI"
+git commit -m "docs: update CLAUDE.md for unified geppetto CLI"
 ```

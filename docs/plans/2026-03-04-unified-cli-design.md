@@ -1,8 +1,8 @@
-# Bot-Breacher Unified CLI — Design Document
+# Geppetto Unified CLI — Design Document
 
 ## Overview
 
-Combine three standalone messaging platform attack tools (EvilSlackbot, LarkBotAbuser2, teams-bot-validator) into a single interactive CLI framework called `bot-breacher`. Supports Slack, Lark/Feishu, and Microsoft Teams with a consistent UX across platforms.
+Combine three standalone messaging platform attack tools (EvilSlackbot, LarkBotAbuser2, teams-bot-validator) into a single interactive CLI framework called `geppetto`. Supports Slack, Lark/Feishu, and Microsoft Teams with a consistent UX across platforms.
 
 ## Decisions
 
@@ -18,10 +18,10 @@ Combine three standalone messaging platform attack tools (EvilSlackbot, LarkBotA
 ## Project Structure
 
 ```
-bot-breacher/
-├── bot_breacher/
+geppetto/
+├── geppetto/
 │   ├── __init__.py
-│   ├── __main__.py          # Entry point: python -m bot_breacher
+│   ├── __main__.py          # Entry point: python -m geppetto
 │   ├── core/
 │   │   ├── __init__.py
 │   │   ├── cli.py           # Rich + questionary menus
@@ -118,7 +118,7 @@ v1: plain text messages only. Adaptive Cards deferred.
 
 Terminal: Rich console with colored per-target status (green/red) in a live table.
 
-File: `logs/bot_breacher_YYYY-MM-DD_HHMMSS.json` — array of entries:
+File: `logs/geppetto_YYYY-MM-DD_HHMMSS.json` — array of entries:
 
 ```json
 [

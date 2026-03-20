@@ -2,10 +2,10 @@
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send, pick_targets_source
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.core.targets import load_targets
-from bot_breacher.slack.actions import (
+from geppetto.core.cli import confirm_send, pick_targets_source
+from geppetto.core.logger import log_info, log_result
+from geppetto.core.targets import load_targets
+from geppetto.slack.actions import (
     list_channels,
     lookup_channel,
     lookup_user_by_email,
@@ -14,7 +14,7 @@ from bot_breacher.slack.actions import (
     send_message,
     send_spoofed_message,
 )
-from bot_breacher.slack.auth import (
+from geppetto.slack.auth import (
     check_permissions,
     create_client,
     get_available_actions,

@@ -4,7 +4,7 @@ import json
 
 import requests
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 
 BASE_URL = "https://open.feishu.cn/open-apis/"

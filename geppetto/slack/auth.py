@@ -3,7 +3,7 @@
 from slack import WebClient
 from slack.errors import SlackApiError
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 
 def create_client(token):

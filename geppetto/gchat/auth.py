@@ -5,7 +5,7 @@ import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 SCOPES = [
     "https://www.googleapis.com/auth/chat.bot",

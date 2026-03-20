@@ -2,17 +2,17 @@
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send, pick_targets_source
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.core.targets import load_targets
-from bot_breacher.lark.actions import (
+from geppetto.core.cli import confirm_send, pick_targets_source
+from geppetto.core.logger import log_info, log_result
+from geppetto.core.targets import load_targets
+from geppetto.lark.actions import (
     edit_card,
     get_chat_id,
     list_cards,
     load_card,
     send_card,
 )
-from bot_breacher.lark.auth import get_tenant_token
+from geppetto.lark.auth import get_tenant_token
 
 
 def run_lark_menu(entry):

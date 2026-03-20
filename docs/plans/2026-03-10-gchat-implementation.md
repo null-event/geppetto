@@ -2,9 +2,9 @@
 
 > **For Claude:** REQUIRED SUB-SKILL: Use superpowers:executing-plans to implement this plan task-by-task.
 
-**Goal:** Add Google Chat as a platform in bot-breacher with space discovery, recon, and message sending (text + CardV2).
+**Goal:** Add Google Chat as a platform in geppetto with space discovery, recon, and message sending (text + CardV2).
 
-**Architecture:** New `bot_breacher/gchat/` module following the existing auth/actions/menu pattern. Service account credentials via `google-auth`, API calls via `google-api-python-client`. Card templates loaded from `google_cards/` directory.
+**Architecture:** New `geppetto/gchat/` module following the existing auth/actions/menu pattern. Service account credentials via `google-auth`, API calls via `google-api-python-client`. Card templates loaded from `google_cards/` directory.
 
 **Tech Stack:** `google-auth==2.49.0`, `google-api-python-client==2.192.0`, existing `questionary`/`rich` TUI
 
@@ -41,8 +41,8 @@ git commit -m "feat(gchat): add google-auth and google-api-python-client depende
 ### Task 2: Create auth module
 
 **Files:**
-- Create: `bot_breacher/gchat/__init__.py`
-- Create: `bot_breacher/gchat/auth.py`
+- Create: `geppetto/gchat/__init__.py`
+- Create: `geppetto/gchat/auth.py`
 
 **Step 1: Create empty `__init__.py`**
 
@@ -62,7 +62,7 @@ import os
 from google.oauth2 import service_account
 from googleapiclient.discovery import build
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 SCOPES = ["https://www.googleapis.com/auth/chat.bot"]
 
@@ -98,7 +98,7 @@ def create_service(service_account_path):
 **Step 3: Commit**
 
 ```bash
-git add bot_breacher/gchat/__init__.py bot_breacher/gchat/auth.py
+git add geppetto/gchat/__init__.py geppetto/gchat/auth.py
 git commit -m "feat(gchat): add auth module with service account credential loading"
 ```
 
@@ -107,7 +107,7 @@ git commit -m "feat(gchat): add auth module with service account credential load
 ### Task 3: Create actions module
 
 **Files:**
-- Create: `bot_breacher/gchat/actions.py`
+- Create: `geppetto/gchat/actions.py`
 
 **Step 1: Create `actions.py`**
 
@@ -117,7 +117,7 @@ git commit -m "feat(gchat): add auth module with service account credential load
 import json
 import os
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 GOOGLE_CARDS_DIR = "google_cards/"
 
@@ -314,7 +314,7 @@ def load_google_card(filename):
 **Step 2: Commit**
 
 ```bash
-git add bot_breacher/gchat/actions.py
+git add geppetto/gchat/actions.py
 git commit -m "feat(gchat): add actions module with space ops and messaging"
 ```
 
@@ -370,7 +370,7 @@ git commit -m "feat(gchat): add example CardV2 template in google_cards/"
 ### Task 5: Create menu module
 
 **Files:**
-- Modify: `bot_breacher/gchat/__init__.py`
+- Modify: `geppetto/gchat/__init__.py`
 
 **Step 1: Replace `__init__.py` with the full menu dispatcher**
 
@@ -379,9 +379,9 @@ git commit -m "feat(gchat): add example CardV2 template in google_cards/"
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.gchat.actions import (
+from geppetto.core.cli import confirm_send
+from geppetto.core.logger import log_info, log_result
+from geppetto.gchat.actions import (
     build_system_alert_card,
     list_google_cards,
     list_spaces,
@@ -390,7 +390,7 @@ from bot_breacher.gchat.actions import (
     send_card_message,
     send_text_message,
 )
-from bot_breacher.gchat.auth import create_service
+from geppetto.gchat.auth import create_service
 
 SPACE_TYPES = ["SPACE", "GROUP_CHAT", "DIRECT_MESSAGE"]
 
@@ -574,7 +574,7 @@ def run_gchat_menu(entry):
 **Step 2: Commit**
 
 ```bash
-git add bot_breacher/gchat/__init__.py
+git add geppetto/gchat/__init__.py
 git commit -m "feat(gchat): add interactive menu with all 6 actions"
 ```
 
@@ -583,13 +583,13 @@ git commit -m "feat(gchat): add interactive menu with all 6 actions"
 ### Task 6: Integrate into core CLI and config
 
 **Files:**
-- Modify: `bot_breacher/core/config.py:9-13` (add to REQUIRED_FIELDS)
-- Modify: `bot_breacher/core/cli.py:31-34` (add to platform choices)
-- Modify: `bot_breacher/core/cli.py:104-112` (add elif branch)
+- Modify: `geppetto/core/config.py:9-13` (add to REQUIRED_FIELDS)
+- Modify: `geppetto/core/cli.py:31-34` (add to platform choices)
+- Modify: `geppetto/core/cli.py:104-112` (add elif branch)
 
 **Step 1: Add `gchat` to `REQUIRED_FIELDS` in `core/config.py`**
 
-In `bot_breacher/core/config.py`, add to the `REQUIRED_FIELDS` dict:
+In `geppetto/core/config.py`, add to the `REQUIRED_FIELDS` dict:
 
 ```python
 REQUIRED_FIELDS = {
@@ -619,7 +619,7 @@ After the Teams elif block (line ~112), add:
 
 ```python
         elif platform_key == "google chat":
-            from bot_breacher.gchat import run_gchat_menu
+            from geppetto.gchat import run_gchat_menu
             run_gchat_menu(entry)
 ```
 
@@ -637,16 +637,16 @@ And update all subsequent references to use `config_key` for config lookups whil
 
 **Step 4: Verify the module loads**
 
-Run: `python -c "from bot_breacher.gchat.auth import create_service; print('OK')"`
+Run: `python -c "from geppetto.gchat.auth import create_service; print('OK')"`
 Expected: `OK`
 
-Run: `python -c "from bot_breacher.gchat.actions import list_spaces, send_text_message, build_system_alert_card; print('OK')"`
+Run: `python -c "from geppetto.gchat.actions import list_spaces, send_text_message, build_system_alert_card; print('OK')"`
 Expected: `OK`
 
 **Step 5: Commit**
 
 ```bash
-git add bot_breacher/core/config.py bot_breacher/core/cli.py
+git add geppetto/core/config.py geppetto/core/cli.py
 git commit -m "feat(gchat): integrate Google Chat into platform menu and config"
 ```
 

@@ -5,7 +5,7 @@ import os
 
 from googleapiclient.http import MediaFileUpload
 
-from bot_breacher.core.logger import log_info
+from geppetto.core.logger import log_info
 
 GOOGLE_CARDS_DIR = "google_cards/"
 

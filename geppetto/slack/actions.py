@@ -2,7 +2,7 @@
 
 from slack.errors import SlackApiError
 
-from bot_breacher.core.logger import log_info, log_result
+from geppetto.core.logger import log_info, log_result
 
 
 def lookup_user_by_email(client, email):

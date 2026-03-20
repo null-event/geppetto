@@ -1,6 +1,6 @@
-"""Tests for bot_breacher.core.targets module."""
+"""Tests for geppetto.core.targets module."""
 
 import tempfile
 from pathlib import Path
 
-from bot_breacher.core.targets import load_targets
+from geppetto.core.targets import load_targets

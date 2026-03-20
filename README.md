@@ -1,4 +1,4 @@
-# Bot-Breacher
+# Geppetto
 
 Offensive security framework for authorized red team and phishing simulation exercises targeting enterprise messaging platforms. Supports **Slack**, **Lark/Feishu**, **Microsoft Teams**, and **Google Chat** through an interactive terminal UI.
 
@@ -83,7 +83,7 @@ Add target emails to `targets.txt` (one per line) for bulk operations.
 ## Usage
 
 ```bash
-python3 -m bot_breacher
+python3 -m geppetto
 ```
 
 The interactive menu walks you through platform selection, credential selection, and action execution. All send actions require explicit confirmation before delivery.
@@ -91,7 +91,7 @@ The interactive menu walks you through platform selection, credential selection,
 ## Project Structure
 
 ```
-bot_breacher/
+geppetto/
 ├── __main__.py          # Entry point
 ├── core/
 │   ├── cli.py           # Rich + questionary menus

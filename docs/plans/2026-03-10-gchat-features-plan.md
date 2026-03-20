@@ -4,7 +4,7 @@
 
 **Goal:** Add update messages, delete messages, create spaces with member addition, file attachments, and list bot messages to the Google Chat module.
 
-**Architecture:** Extend `bot_breacher/gchat/actions.py` with 7 new functions and modify 2 existing ones. Extend `bot_breacher/gchat/__init__.py` with 6 new menu items. Add additional OAuth scopes in `auth.py` to support new operations. Media upload requires user auth — use domain-wide delegation with a service account impersonating a user.
+**Architecture:** Extend `geppetto/gchat/actions.py` with 7 new functions and modify 2 existing ones. Extend `geppetto/gchat/__init__.py` with 6 new menu items. Add additional OAuth scopes in `auth.py` to support new operations. Media upload requires user auth — use domain-wide delegation with a service account impersonating a user.
 
 **Tech Stack:** `google-api-python-client`, `google-auth`, `googleapiclient.http.MediaFileUpload`
 
@@ -30,11 +30,11 @@ The auth module needs to add scopes and support domain-wide delegation for the u
 ### Task 1: Modify send functions to return message names
 
 **Files:**
-- Modify: `bot_breacher/gchat/actions.py:75-107`
+- Modify: `geppetto/gchat/actions.py:75-107`
 
 - [ ] **Step 1: Update `send_text_message` to return message resource name**
 
-In `bot_breacher/gchat/actions.py`, change `send_text_message`:
+In `geppetto/gchat/actions.py`, change `send_text_message`:
 
 ```python
 def send_text_message(service, space_id, text):
@@ -55,7 +55,7 @@ def send_text_message(service, space_id, text):
 
 - [ ] **Step 2: Update `send_card_message` to return message resource name**
 
-In `bot_breacher/gchat/actions.py`, change `send_card_message`:
+In `geppetto/gchat/actions.py`, change `send_card_message`:
 
 ```python
 def send_card_message(service, space_id, card_payload):
@@ -82,7 +82,7 @@ def send_card_message(service, space_id, card_payload):
 - [ ] **Step 3: Commit**
 
 ```bash
-git add bot_breacher/gchat/actions.py
+git add geppetto/gchat/actions.py
 git commit -m "feat(gchat): return message resource names from send functions"
 ```
 
@@ -91,11 +91,11 @@ git commit -m "feat(gchat): return message resource names from send functions"
 ### Task 2: Add list bot messages, update, and delete functions
 
 **Files:**
-- Modify: `bot_breacher/gchat/actions.py`
+- Modify: `geppetto/gchat/actions.py`
 
 - [ ] **Step 1: Add `list_bot_messages` function**
 
-Append to `bot_breacher/gchat/actions.py`, after the `send_card_message` function:
+Append to `geppetto/gchat/actions.py`, after the `send_card_message` function:
 
 ```python
 def list_bot_messages(service, space_id):
@@ -207,7 +207,7 @@ def delete_message(service, message_name):
 - [ ] **Step 5: Commit**
 
 ```bash
-git add bot_breacher/gchat/actions.py
+git add geppetto/gchat/actions.py
 git commit -m "feat(gchat): add list bot messages, update, and delete functions"
 ```
 
@@ -216,12 +216,12 @@ git commit -m "feat(gchat): add list bot messages, update, and delete functions"
 ### Task 3: Add create space and add members functions
 
 **Files:**
-- Modify: `bot_breacher/gchat/actions.py`
-- Modify: `bot_breacher/gchat/auth.py`
+- Modify: `geppetto/gchat/actions.py`
+- Modify: `geppetto/gchat/auth.py`
 
 - [ ] **Step 1: Add `chat.app.spaces.create` and `chat.app.memberships` scopes**
 
-In `bot_breacher/gchat/auth.py`, change the SCOPES list:
+In `geppetto/gchat/auth.py`, change the SCOPES list:
 
 ```python
 SCOPES = [
@@ -233,7 +233,7 @@ SCOPES = [
 
 - [ ] **Step 2: Add `create_space` function**
 
-Append to `bot_breacher/gchat/actions.py`:
+Append to `geppetto/gchat/actions.py`:
 
 ```python
 def create_space(service, display_name):
@@ -292,7 +292,7 @@ def add_members_to_space(service, space_id, emails):
 - [ ] **Step 4: Commit**
 
 ```bash
-git add bot_breacher/gchat/actions.py bot_breacher/gchat/auth.py
+git add geppetto/gchat/actions.py geppetto/gchat/auth.py
 git commit -m "feat(gchat): add create space and add members functions"
 ```
 
@@ -301,21 +301,21 @@ git commit -m "feat(gchat): add create space and add members functions"
 ### Task 4: Add file upload function
 
 **Files:**
-- Modify: `bot_breacher/gchat/actions.py`
-- Modify: `bot_breacher/gchat/auth.py`
-- Modify: `bot_breacher/core/config.py`
+- Modify: `geppetto/gchat/actions.py`
+- Modify: `geppetto/gchat/auth.py`
+- Modify: `geppetto/core/config.py`
 
 The media upload endpoint requires user authentication. With a service account, this is achieved via domain-wide delegation — the service account impersonates a user. The config needs an optional `delegate_user_email` field.
 
 - [ ] **Step 1: Add `delegate_user_email` as optional config field**
 
-In `bot_breacher/core/config.py`, the `gchat` entry in `REQUIRED_FIELDS` stays the same (only `name` and `service_account_path` are required). The `delegate_user_email` field is optional and checked at runtime when uploads are attempted.
+In `geppetto/core/config.py`, the `gchat` entry in `REQUIRED_FIELDS` stays the same (only `name` and `service_account_path` are required). The `delegate_user_email` field is optional and checked at runtime when uploads are attempted.
 
 No code change needed in `config.py` — optional fields aren't validated.
 
 - [ ] **Step 2: Add `create_delegated_service` function to `auth.py`**
 
-Append to `bot_breacher/gchat/auth.py`:
+Append to `geppetto/gchat/auth.py`:
 
 ```python
 UPLOAD_SCOPES = [
@@ -445,7 +445,7 @@ gchat:
 - [ ] **Step 5: Commit**
 
 ```bash
-git add bot_breacher/gchat/actions.py bot_breacher/gchat/auth.py config.yaml.example
+git add geppetto/gchat/actions.py geppetto/gchat/auth.py config.yaml.example
 git commit -m "feat(gchat): add file upload with domain-wide delegation support"
 ```
 
@@ -454,14 +454,14 @@ git commit -m "feat(gchat): add file upload with domain-wide delegation support"
 ### Task 5: Wire new actions into the menu
 
 **Files:**
-- Modify: `bot_breacher/gchat/__init__.py`
+- Modify: `geppetto/gchat/__init__.py`
 
 - [ ] **Step 1: Add new imports**
 
-In `bot_breacher/gchat/__init__.py`, update the imports from `actions`:
+In `geppetto/gchat/__init__.py`, update the imports from `actions`:
 
 ```python
-from bot_breacher.gchat.actions import (
+from geppetto.gchat.actions import (
     add_members_to_space,
     build_system_alert_card,
     create_space,
@@ -477,17 +477,17 @@ from bot_breacher.gchat.actions import (
     update_text_message,
     upload_attachment,
 )
-from bot_breacher.gchat.auth import create_delegated_service, create_service
+from geppetto.gchat.auth import create_delegated_service, create_service
 ```
 
 Also add imports for targets:
 
 ```python
-from bot_breacher.core.cli import (
+from geppetto.core.cli import (
     confirm_send,
     pick_targets_source,
 )
-from bot_breacher.core.targets import load_targets
+from geppetto.core.targets import load_targets
 ```
 
 - [ ] **Step 2: Add `_pick_message_name` helper**
@@ -786,7 +786,7 @@ import os
 - [ ] **Step 11: Commit**
 
 ```bash
-git add bot_breacher/gchat/__init__.py
+git add geppetto/gchat/__init__.py
 git commit -m "feat(gchat): wire up 6 new menu actions"
 ```
 

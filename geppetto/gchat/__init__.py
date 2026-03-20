@@ -4,10 +4,10 @@ import os
 
 import questionary
 
-from bot_breacher.core.cli import confirm_send, pick_targets_source
-from bot_breacher.core.logger import log_info, log_result
-from bot_breacher.core.targets import load_targets
-from bot_breacher.gchat.actions import (
+from geppetto.core.cli import confirm_send, pick_targets_source
+from geppetto.core.logger import log_info, log_result
+from geppetto.core.targets import load_targets
+from geppetto.gchat.actions import (
     add_members_to_space,
     build_system_alert_card,
     create_space,
@@ -23,7 +23,7 @@ from bot_breacher.gchat.actions import (
     update_text_message,
     upload_attachment,
 )
-from bot_breacher.gchat.auth import (
+from geppetto.gchat.auth import (
     check_capabilities,
     create_delegated_service,
     create_service,

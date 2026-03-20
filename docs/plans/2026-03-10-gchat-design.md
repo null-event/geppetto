@@ -2,7 +2,7 @@
 
 ## Overview
 
-Add Google Chat as a new platform in bot-breacher, incorporating the capabilities from `gcp_audit5.py` into the existing platform module pattern.
+Add Google Chat as a new platform in geppetto, incorporating the capabilities from `gcp_audit5.py` into the existing platform module pattern.
 
 ## Authentication
 
@@ -26,7 +26,7 @@ gchat:
 ## Module Structure
 
 ```
-bot_breacher/gchat/
+geppetto/gchat/
 ├── __init__.py    # run_gchat_menu() — action dispatcher
 ├── auth.py        # create_service() — credential loading, API client
 └── actions.py     # list_spaces, recon_space, send_text, send_card, card helpers
