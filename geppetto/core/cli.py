@@ -20,9 +20,9 @@ BANNER_LINES = [
     ("bold blue",   r"  \__, |\___| .__/| .__/ \___|\__,_\__|\__\___/ "),
     ("bold magenta",r"  |___/     |_|   |_|                           "),
     ("bold white",  ""),
-    ("bold red",    r"      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  "),
-    ("bold yellow", r"      |I|M| |B|o|t| |P|u|p|p|e|t| |M|a|s|t|e|r| "),
-    ("bold red",    r"      +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+  "),
+    ("bold red",    r"      +---------------------------------------+  "),
+    ("bold yellow", r"      | I M   B o t   P u p p e t   M a s t e r | "),
+    ("bold red",    r"      +---------------------------------------+  "),
     ("bold white",  ""),
     ("dim white",   r"              @null-event  &  @Wi1DN00B         "),
 ]
