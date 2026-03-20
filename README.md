@@ -2,7 +2,10 @@
 
 Offensive security framework for authorized red team and phishing simulation exercises targeting enterprise messaging platforms. Supports **Slack**, **Lark/Feishu**, **Microsoft Teams**, and **Google Chat** through an interactive terminal UI.
 
-> **Authorization required.** This tool is intended for use in authorized penetration testing, red team engagements, and phishing simulations only.
+<img width="556" height="381" alt="image" src="https://github.com/user-attachments/assets/c0e0476b-343e-4dec-a935-872773beef0d" />
+
+
+> **Disclaimer** This tool is intended for use in authorized penetration testing, red team engagements, and phishing simulations only.
 
 ## Features
 
