@@ -2,7 +2,7 @@
 
 <img width="556" height="381" alt="image" src="https://github.com/user-attachments/assets/c0e0476b-343e-4dec-a935-872773beef0d" />
 
-Offensive security framework for authorized red team and phishing simulation exercises targeting enterprise messaging platforms. Supports **Slack**, **Lark/Feishu**, **Microsoft Teams**, and **Google Chat** through an interactive terminal UI.
+Offensive security framework for authorized red team and phishing simulation exercises targeting enterprise messaging platforms. Supports **Slack**, **Lark/Feishu**, **Microsoft Teams**, **Google Chat**, and **Discord** through an interactive terminal UI.
 
 > **Disclaimer** This tool is intended for use in authorized penetration testing, red team engagements, and phishing simulations only.
 
@@ -44,6 +44,15 @@ Offensive security framework for authorized red team and phishing simulation exe
 - Built-in System Alert card or custom templates from `google_cards/`
 - Uses service account credentials via `google-auth`
 
+### Discord
+- **Token validation** — identifies the bot via `GET /users/@me`
+- **Guild & channel enumeration** — list guilds the bot is in and channels per guild
+- **Channel messages** — send plaintext to a channel by ID
+- **Direct messages** — open a DM channel with a user ID and send
+- **File attachments** — upload files to a channel with optional text
+- **Spoofed messages** — send via configured webhooks with custom username/avatar
+- Targets are Discord IDs (channel/user), not emails — `targets.txt` is reused as a line-per-ID list in this flow
+
 ### General
 - Interactive Rich TUI with platform selection menus
 - Multi-bot support — configure multiple credentials per platform
@@ -78,6 +87,14 @@ teams:
 gchat:
   - name: "My Google Chat Bot"
     service_account_path: "/path/to/service_account.json"
+
+discord:
+  - name: "My Discord Bot"
+    token: "your-bot-token-here"
+    # Optional: webhooks for spoofed sends
+    # webhooks:
+    #   - name: "#general spoof hook"
+    #     url: "https://discord.com/api/webhooks/XXX/YYY"
 ```
 
 Add target emails to `targets.txt` (one per line) for bulk operations.
@@ -109,9 +126,12 @@ geppetto/
 ├── teams/
 │   ├── auth.py          # OAuth2 client creds, JWT decode
 │   └── actions.py       # User resolution, conversation, send
-└── gchat/
-    ├── auth.py          # Service account credential loading
-    └── actions.py       # List spaces, recon, send text/card
+├── gchat/
+│   ├── auth.py          # Service account credential loading
+│   └── actions.py       # List spaces, recon, send text/card
+└── discord/
+    ├── auth.py          # Bot token validation
+    └── actions.py       # Guilds, channels, send, DM, file, webhook spoof
 ```
 
 Each platform follows the same pattern: `auth.py` handles authentication, `actions.py` contains operations, `__init__.py` wires the interactive menu.
