@@ -11,6 +11,7 @@ REQUIRED_FIELDS = {
     "lark": ["name", "app_id", "app_secret"],
     "teams": ["name", "client_id", "client_secret"],
     "gchat": ["name", "service_account_path"],
+    "discord": ["name"],
 }
 
 

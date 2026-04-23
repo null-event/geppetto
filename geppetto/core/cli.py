@@ -40,7 +40,7 @@ def pick_platform():
     """Prompt user to select a messaging platform."""
     return questionary.select(
         "Select a platform:",
-        choices=["Slack", "Lark", "Teams", "Google Chat", "Exit"],
+        choices=["Slack", "Lark", "Teams", "Google Chat", "Discord", "Exit"],
     ).ask()
 
 
@@ -124,3 +124,6 @@ def main():
         elif platform_key == "google chat":
             from geppetto.gchat import run_gchat_menu
             run_gchat_menu(entry)
+        elif platform_key == "discord":
+            from geppetto.discord import run_discord_menu
+            run_discord_menu(entry)

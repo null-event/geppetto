@@ -19,3 +19,13 @@ gchat:
     # delegate_user_email: "admin@example.com"
     # Optional: required for space creation (Google Workspace customer ID)
     # customer_id: "C01234abc"
+
+discord:
+  - name: "Example Discord Bot"
+    # Optional: bot token enables channel/DM/file actions.
+    # token: "your-bot-token-here"
+    # Optional: webhooks enable spoofed sends (custom username/avatar).
+    # At least one of token/webhooks must be set.
+    # webhooks:
+    #   - name: "#general spoof hook"
+    #     url: "https://discord.com/api/webhooks/XXX/YYY"
